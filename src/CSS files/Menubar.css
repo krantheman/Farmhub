@@ -1,0 +1,37 @@
+.menu-bar .label {
+    -fx-text-fill: #2E2E2E;
+    -fx-font-size: 13pt ;
+}
+
+.menu-bar > .container > .menu-button:hover,
+.menu-bar > .container > .menu-button:focused,
+.menu-bar > .container > .menu-button:showing {
+    -fx-background-color: #51ab7e; 
+}
+
+.menu-item .label {
+    -fx-text-fill: white;
+    -fx-font-size: 10pt ;
+}
+
+.menu-item:focused {
+     -fx-background-color: #51ab7e;
+}
+
+.context-menu {
+    -fx-background-color:  #404040;
+}
+
+.check-box .box {
+
+-fx-background-color: #404040;
+-fx-border-color: white;
+-fx-border-radius: 1px; 
+
+}
+
+.check-box:selected .mark {
+
+-fx-background-color: white;
+
+}

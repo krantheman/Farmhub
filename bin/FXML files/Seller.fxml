@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.CustomMenuItem?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Seller">
+   <children>
+      <AnchorPane prefHeight="35.0" prefWidth="1920.0" style="-fx-background-color: #5abf8d;">
+         <children>
+            <MenuBar layoutX="1814.0" prefHeight="35.0" prefWidth="106.0" style="-fx-background-color: #5abf8d;" stylesheets="@../CSS%20files/Menubar.css">
+              <menus>
+                <Menu mnemonicParsing="false" text="Account">
+                  <items>
+                        <CustomMenuItem hideOnClick="false" mnemonicParsing="false">
+                          <content>
+                            <CheckBox fx:id="live" onAction="#goliveAction" stylesheets="@../CSS%20files/Menubar.css" text="Go live" />
+                          </content>
+                        </CustomMenuItem>
+                        <MenuItem mnemonicParsing="false" onAction="#editprofileAction" text="Edit profile" />
+                        <MenuItem mnemonicParsing="false" onAction="#signoutAction" text="Sign out" />
+                  </items>
+                </Menu>
+              </menus>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </MenuBar>
+            <Label fx:id="welcome" alignment="BOTTOM_LEFT" prefHeight="35.0" prefWidth="300.0" text="Welcome, User" textFill="#2e2e2e">
+               <font>
+                  <Font name="System Italic" size="17.0" />
+               </font>
+               <padding>
+                  <Insets bottom="6.0" left="20.0" top="6.0" />
+               </padding>
+            </Label>
+         </children></AnchorPane>
+      <AnchorPane layoutY="35.0" prefHeight="1045.0" prefWidth="150.0" style="-fx-background-color: #404040;">
+         <children>
+            <ToggleButton layoutY="14.0" mnemonicParsing="false" onAction="#ordersAction" prefHeight="40.0" prefWidth="150.0" styleClass="SideButton" stylesheets="@../CSS%20files/Button.css" text="Orders" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <toggleGroup>
+                  <ToggleGroup fx:id="sidebarTG" />
+               </toggleGroup>
+            </ToggleButton>
+            <ToggleButton layoutY="54.0" mnemonicParsing="false" onAction="#inventoryAction" prefHeight="40.0" prefWidth="150.0" styleClass="SideButton" stylesheets="@../CSS%20files/Button.css" text="Inventory" textFill="WHITE" toggleGroup="$sidebarTG">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ToggleButton>
+            <ToggleButton layoutY="94.0" mnemonicParsing="false" onAction="#historyAction" prefHeight="40.0" prefWidth="150.0" styleClass="SideButton" stylesheets="@../CSS%20files/Button.css" text="History" textFill="WHITE" toggleGroup="$sidebarTG">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ToggleButton>
+            <ToggleButton layoutY="134.0" mnemonicParsing="false" onAction="#statisticsAction" prefHeight="40.0" prefWidth="150.0" styleClass="SideButton" stylesheets="@../CSS%20files/Button.css" text="Statistics" textFill="WHITE" toggleGroup="$sidebarTG">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ToggleButton>
+         </children></AnchorPane>
+      <BorderPane fx:id="mainpane" layoutX="150.0" layoutY="35.0">
+         <center>
+            <AnchorPane prefHeight="1045.0" prefWidth="1770.0" />
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

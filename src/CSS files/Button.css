@@ -1,0 +1,26 @@
+.SideButton{
+	 -fx-background-color: #404040; 	
+	 -fx-background-radius: 0;
+}
+
+.SideButton:hover{ -fx-background-color: #393939; }
+
+.SideButton:selected{
+	 -fx-background-color: #5abf8d, #2E2E2E;
+	 -fx-background-insets: 0, 0 0 0 3;
+}
+
+
+
+.GreenButton{
+	-fx-background-color: #5abf8d;
+	-fx-background-radius: 0;
+}
+
+.GreenButton:hover{ -fx-background-color: #51ab7e; }
+
+.GreenButton:pressed{
+    -fx-background-color: #489971;
+    -fx-border-color: rgb(49, 89, 23);
+	-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="1045.0" prefWidth="1770.0" style="-fx-background-color: #2E2E2E;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.EditProfile">
+   <children>
+      <AnchorPane layoutX="120.0" layoutY="80.0" prefHeight="425.0" prefWidth="600.0" style="-fx-background-color: #404040;">
+         <children>
+            <Label layoutX="60.0" layoutY="30.0" prefHeight="40.0" text="User Profile" textFill="#e5e5e5" underline="true">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font></Label>
+            <Label layoutX="60.0" layoutY="80.0" prefHeight="20.0" text="Name" textFill="#e5e5e5">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="name" layoutX="60.0" layoutY="110.0" prefWidth="220.0" styleClass="text-field2" stylesheets="@../CSS%20files/Textfield.css" />
+            <Label layoutX="60.0" layoutY="160.0" prefHeight="20.0" text="Address" textFill="#e5e5e5">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="address" layoutX="60.0" layoutY="190.0" prefHeight="110.0" prefWidth="220.0" styleClass="text-area2" stylesheets="@../CSS%20files/Textfield.css" wrapText="true" />
+            <Button layoutX="60.0" layoutY="325.0" mnemonicParsing="false" onAction="#saveAction" prefWidth="100.0" styleClass="GreenButton" stylesheets="@../CSS%20files/Button.css" text="Save" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="180.0" layoutY="325.0" mnemonicParsing="false" onAction="#resetAction" prefWidth="100.0" styleClass="GreenButton" stylesheets="@../CSS%20files/Button.css" text="Reset" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label fx:id="UPlabel" layoutX="60.0" layoutY="360.0" prefHeight="28.0" prefWidth="220.0" textFill="#e5e5e5" wrapText="true">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </AnchorPane>
+      <AnchorPane layoutX="120.0" layoutY="570.0" prefHeight="340.0" prefWidth="600.0" style="-fx-background-color: #404040;">
+         <children>
+            <Label layoutX="60.0" layoutY="30.0" prefHeight="40.0" text="Change Password" textFill="#e5e5e5" underline="true">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="oldpassword" layoutX="60.0" layoutY="90.0" prefWidth="220.0" promptText="Old Password" styleClass="text-field2" stylesheets="@../CSS%20files/Textfield.css" />
+            <PasswordField fx:id="newpassword" layoutX="60.0" layoutY="140.0" prefWidth="220.0" promptText="New Password" styleClass="text-field2" stylesheets="@../CSS%20files/Textfield.css" />
+            <PasswordField fx:id="retypepassword" layoutX="60.0" layoutY="190.0" prefWidth="220.0" promptText="Re-type Password" styleClass="text-field2" stylesheets="@../CSS%20files/Textfield.css" />
+            <Button layoutX="60.0" layoutY="240.0" mnemonicParsing="false" onAction="#confirmAction" prefWidth="100.0" styleClass="GreenButton" stylesheets="@../CSS%20files/Button.css" text="Confirm" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label fx:id="CPlabel" layoutX="60.0" layoutY="275.0" prefHeight="28.0" prefWidth="220.0" textFill="#e5e5e5" wrapText="true">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </AnchorPane>
+   </children>
+</AnchorPane>

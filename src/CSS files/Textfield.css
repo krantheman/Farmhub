@@ -1,0 +1,39 @@
+.text-field {
+	-fx-text-fill: #e5e5e5;
+	-fx-border-width: 0;
+	-fx-control-inner-background: #2E2E2E;
+	-fx-prompt-text-fill: #a4a4a4;
+}
+
+.text-field2 {
+	-fx-text-fill: #e5e5e5;
+	-fx-border-width: 0;
+	-fx-control-inner-background: #404040;
+	-fx-prompt-text-fill: #a4a4a4;
+}
+
+.text-area {
+	-fx-text-fill: #e5e5e5;
+	-fx-padding: 0px;
+}
+
+.text-area .content {
+	-fx-background-color: #2E2E2E;
+	-fx-background-radius: 0;
+}
+
+.text-area2 {
+	-fx-text-fill: #e5e5e5;
+	-fx-padding: 0px;
+}
+
+.text-area2 .content {
+	-fx-background-color: #404040;
+	-fx-background-radius: 0;
+}
+
+.choice-box .label { -fx-text-fill: #e5e5e5; }
+
+.choice-box .context-menu { -fx-background-color: #2E2E2E; }
+
+.choice-box .menu-item:focused { -fx-background-color: #5abf8d; }
