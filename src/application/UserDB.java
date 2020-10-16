@@ -180,4 +180,16 @@ public class UserDB {
 		}
 		
 	}
+	
+	//For signing out 
+	static void signOut() {
+		
+		userName = "";
+		userEmail = "";
+		userPassword = "";
+		userAddress = "";
+		userType = "";
+		
+	}
+	
 }

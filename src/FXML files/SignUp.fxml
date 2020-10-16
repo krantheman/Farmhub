@@ -7,6 +7,8 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -43,20 +45,25 @@
       </AnchorPane>
       <AnchorPane layoutX="2.0" layoutY="1.0" prefHeight="400.0" prefWidth="449.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="35.0" layoutY="156.0" text="Your one-stop shopping destination for all fruits and vegetables. &#10;Directly from the farm." textFill="#e5e5e5">
+            <Label layoutX="35.0" layoutY="250.0" text="Your one-stop shopping destination for all fruits and vegetables. &#10;Directly from the farm." textFill="#e5e5e5">
                <font>
                   <Font size="11.0" />
                </font></Label>
-            <Label layoutX="36.0" layoutY="116.0" text="Welcome to FarmHub" textFill="#e5e5e5">
+            <Label layoutX="36.0" layoutY="200.0" text="Welcome to FarmHub" textFill="#e5e5e5">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
             </Label>
-            <Button fx:id="signin" layoutX="35.0" layoutY="200.0" mnemonicParsing="false" onAction="#signinAction" prefHeight="32.0" prefWidth="144.0" styleClass="GreenButton" stylesheets="@../CSS%20files/Button.css" text="Sign In" textFill="WHITE">
+            <Button fx:id="signin" layoutX="35.0" layoutY="300.0" mnemonicParsing="false" onAction="#signinAction" prefHeight="32.0" prefWidth="144.0" styleClass="GreenButton" stylesheets="@../CSS%20files/Button.css" text="Sign In" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="114.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Desktop/logo.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

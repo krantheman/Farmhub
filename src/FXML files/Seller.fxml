@@ -18,7 +18,7 @@
    <children>
       <AnchorPane prefHeight="35.0" prefWidth="1920.0" style="-fx-background-color: #5abf8d;">
          <children>
-            <MenuBar layoutX="1814.0" prefHeight="35.0" prefWidth="106.0" style="-fx-background-color: #5abf8d;" stylesheets="@../CSS%20files/Menubar.css">
+            <MenuBar fx:id="account" layoutX="1814.0" prefHeight="35.0" prefWidth="106.0" style="-fx-background-color: #5abf8d;" stylesheets="@../CSS%20files/Menubar.css">
               <menus>
                 <Menu mnemonicParsing="false" text="Account">
                   <items>
