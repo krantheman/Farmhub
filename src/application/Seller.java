@@ -45,11 +45,12 @@ public class Seller implements Initializable {
     boolean chk = true;
     
     Fxmlloader loader = new Fxmlloader();
-
+    
     @FXML
     void ordersAction(ActionEvent event) throws Exception {
 
-		welcome.setText("Welcome, " + UserDB.userName);
+    	String welcomeText = "Welcome, " + UserDB.userName;
+		welcome.setText(welcomeText);
     	chk = true;
 
     	Pane pane = loader.getPane("Seller.fxml");
@@ -60,10 +61,11 @@ public class Seller implements Initializable {
     @FXML
     void inventoryAction(ActionEvent event) throws Exception {
     	
-		welcome.setText("Welcome, " + UserDB.userName);
+    	String welcomeText = "Welcome, " + UserDB.userName;
+		welcome.setText(welcomeText);
     	chk = true;
 
-    	Pane pane = loader.getPane("");
+    	Pane pane = loader.getPane("SellerInventory.fxml");
     	mainpane.setCenter(pane);
 
     }
@@ -71,7 +73,8 @@ public class Seller implements Initializable {
     @FXML
     void historyAction(ActionEvent event) throws Exception {
 
-		welcome.setText("Welcome, " + UserDB.userName);
+    	String welcomeText = "Welcome, " + UserDB.userName;
+		welcome.setText(welcomeText);
     	chk = true;
 
     	Pane pane = loader.getPane("");
@@ -82,7 +85,8 @@ public class Seller implements Initializable {
     @FXML
     void statisticsAction(ActionEvent event) throws Exception {
     		
-		welcome.setText("Welcome, " + UserDB.userName);
+    	String welcomeText = "Welcome, " + UserDB.userName;
+		welcome.setText(welcomeText);
     	chk = true;
 
     	Pane pane = loader.getPane("");
@@ -93,7 +97,6 @@ public class Seller implements Initializable {
     @FXML
     void editprofileAction(ActionEvent event) throws Exception {
 
-		welcome.setText("Welcome, " + UserDB.userName);
     	chk = false;
 
     	Pane pane = loader.getPane("EditProfile.fxml");
@@ -146,7 +149,8 @@ public class Seller implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		welcome.setText("Welcome, " + UserDB.userName);
+    	String welcomeText = "Welcome, " + UserDB.userName;
+		welcome.setText(welcomeText);
 		
 		//Preventing side bar toggle group from not having a toggle selected
 		sidebarTG.selectedToggleProperty().addListener((obsVal, oldVal, newVal) -> {

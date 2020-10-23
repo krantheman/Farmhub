@@ -4,6 +4,9 @@ import java.sql.*;
 
 import javax.mail.MessagingException;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class UserDB {
 
 	static String url = "jdbc:mysql://localhost:3306/userdb";
@@ -17,10 +20,12 @@ public class UserDB {
 	static String userType = "";
 	static String error = "";
 	
-	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 	
 	//For creating an account
 	static void create(String name, String email, String pass, String address, String interest) throws MessagingException {
+		
+		error = "";
 		
 		try {
 			
@@ -55,11 +60,12 @@ public class UserDB {
 		
 	}
 	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 	
-	
-
 	//For signing in
 	static void SignIn(String email, String pass) {
+		
+		error = "";
 		
 		try {
 			
@@ -95,8 +101,7 @@ public class UserDB {
 		
 	}
 	
-	
-	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 	
 	//For updating user details
 	static void updateProfile(String name, String address) {
@@ -124,7 +129,7 @@ public class UserDB {
 		
 	}
 	
-	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 	
 	//For changing password
 	static void changePassword(String pass) {
@@ -151,7 +156,7 @@ public class UserDB {
 		
 	}
 	
-	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 	
 	//For going live 
 	static void goLive(boolean live) {
@@ -181,6 +186,154 @@ public class UserDB {
 		
 	}
 	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+	
+	//For displaying inventory to seller
+	static  ObservableList<Inventory> displayInventory(String available, String category) throws SQLException {
+		
+			//Connection
+			Connection connection = DriverManager.getConnection(url, username, password);
+			
+			//Query statement
+			String query;
+
+			if (category.equals("All")) {
+
+				if (available.equals("Available")) {				
+					query = String.format("select * from inventory where seller = '%s' and available = '1';", userEmail);
+				}
+
+				else if (available.equals("Unavailable")) {				
+					query = String.format("select * from inventory where seller = '%s' and available = '0';", userEmail);
+				}
+
+				else {
+					query = String.format("select * from inventory where seller = '%s';", userEmail);
+				}
+
+			}
+
+			else {
+
+				if (available.equals("Available")) {				
+					query = String.format("select * from inventory where seller = '%s' and available = '1' and category = '%s';", userEmail, category);
+				}
+
+				else if (available.equals("Unavailable")) {				
+					query = String.format("select * from inventory where seller = '%s' and available = '0' and category = '%s';", userEmail, category);
+				}
+
+				else {
+					query = String.format("select * from inventory where seller = '%s' and category = '%s';", userEmail, category);
+				}
+
+			}
+
+			PreparedStatement ps = connection.prepareStatement(query);
+			ResultSet rs = ps.executeQuery();
+			
+			//List for storing data
+			ObservableList<Inventory> list = FXCollections.observableArrayList();
+			while (rs.next()) {
+				list.add(new Inventory(rs.getString("item"), rs.getString("quantity"), rs.getString("category"), rs.getDouble("price"), rs.getByte("available")));
+			}
+			
+			return list;
+			
+	}
+	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+	
+	//For seller to add items to inventory
+	static void addInventory(String item, String quantity, double price, String category) {
+		
+		error = "";
+		try {
+			
+			//Connection
+			Connection connection = DriverManager.getConnection(url, username, password);
+		
+			//Query statement
+			String query = String.format("select * from inventory where item = '%s' and quantity = '%s';", item, quantity);
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(query);
+			
+			if (rs.next()) {
+				error = "Listing already exists";
+			}
+
+			else {
+
+				//Query statement
+				query = String.format("insert into inventory(seller, item, quantity, price, category, available) values('%s', '%s', '%s', '%.2f', '%s', '1');",userEmail, item, quantity, price, category);
+				statement.executeUpdate(query);
+			}
+
+			//Closing connection
+			connection.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+
+	//For going live 
+	static void itemAvailable(boolean available, String item, String quantity) {
+		
+		try {
+			
+			//Connection
+			Connection connection = DriverManager.getConnection(url, username, password);
+		
+			//Query statement
+			String query;
+			if (available) {	
+				query = String.format("update inventory set available = '1' where seller = '%s' and item = '%s' and quantity = '%s';", userEmail, item, quantity);
+			}
+			else {				
+				query = String.format("update inventory set available = '0' where seller = '%s' and item = '%s' and quantity = '%s';", userEmail, item, quantity);
+			}
+			Statement statement = connection.createStatement();
+			statement.executeUpdate(query);
+
+			//Closing connection
+			connection.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+
+	//For deleting item listing from inventory
+	static void itemDelete(String item, String quantity) {
+		
+		try {
+			
+			//Connection
+			Connection connection = DriverManager.getConnection(url, username, password);
+		
+			//Query statement
+			String query = String.format("delete from inventory where seller = '%s' and item = '%s' and quantity = '%s';", userEmail, item, quantity);
+			Statement statement = connection.createStatement();
+			statement.executeUpdate(query);
+
+			//Closing connection
+			connection.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+
 	//For signing out 
 	static void signOut() {
 		

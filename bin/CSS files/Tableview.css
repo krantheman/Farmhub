@@ -1,0 +1,89 @@
+.root{
+    -fx-background-color: transparent;
+}
+
+.table-view{
+   -fx-background-color: transparent;
+   -fx-table-cell-border-color: transparent;
+}
+
+.table-view .corner {
+    -fx-background-color: transparent;
+}
+
+.table-view:focused{
+    -fx-background-color: transparent;
+}
+
+.table-view .table-column{
+    -fx-alignment:center;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-weight:bold;
+    -fx-font-size:18px;
+}
+
+.table-view .column-header-background .filler {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell{
+    -fx-text-fill: white;
+    -fx-font-size:16px;
+}
+
+.table-row-cell{
+    -fx-background-color: transparent;
+    -fx-cell-size: 50px;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #51ab7e;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-table-cell-border-color: transparent;
+    
+}
+
+.table-view .virtual-flow .scroll-bar:vertical,
+.table-view .virtual-flow .scroll-bar:vertical .track,
+.table-view .virtual-flow .scroll-bar:vertical .track-background,
+.table-view .virtual-flow .scroll-bar:horizontal,
+.table-view .virtual-flow .scroll-bar:horizontal .track,
+.table-view .virtual-flow .scroll-bar:horizontal .track-background {
+    -fx-background-color: #404040;
+}
+
+.table-view .virtual-flow .scroll-bar .increment-button,
+.table-view .virtual-flow .scroll-bar .decrement-button {
+    -fx-opacity: 0;
+    -fx-padding: 2;
+}
+
+.table-view .virtual-flow .scroll-bar:vertical .thumb{
+    -fx-background-color:  linear-gradient(to bottom, #5abf8d, #489971);
+}
+.table-view .virtual-flow .scroll-bar:horizontal .thumb {
+    -fx-background-color: transparent;
+}
+
+.table-view > .virtual-flow > .scroll-bar > .increment-button, 
+.table-view > .virtual-flow > .scroll-bar > .decrement-button {
+    -fx-opacity: 0;
+}
+
+ .table-view .placeholder .label {
+     -fx-text-fill: white;
+     -fx-font-size: 20px;
+ }

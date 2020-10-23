@@ -14,20 +14,20 @@
    <children>
       <AnchorPane layoutX="120.0" layoutY="80.0" prefHeight="425.0" prefWidth="600.0" style="-fx-background-color: #404040;">
          <children>
-            <Label layoutX="60.0" layoutY="30.0" prefHeight="40.0" text="User Profile" textFill="#e5e5e5" underline="true">
+            <Label layoutX="60.0" layoutY="30.0" prefHeight="40.0" text="User Profile" textFill="WHITE">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
                <font>
                   <Font name="System Bold" size="22.0" />
                </font></Label>
-            <Label layoutX="60.0" layoutY="80.0" prefHeight="20.0" text="Name" textFill="#e5e5e5">
+            <Label layoutX="60.0" layoutY="80.0" prefHeight="20.0" text="Name" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
             <TextField fx:id="name" layoutX="60.0" layoutY="110.0" prefWidth="220.0" styleClass="text-field2" stylesheets="@../CSS%20files/Textfield.css" />
-            <Label layoutX="60.0" layoutY="160.0" prefHeight="20.0" text="Address" textFill="#e5e5e5">
+            <Label layoutX="60.0" layoutY="160.0" prefHeight="20.0" text="Address" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
@@ -43,7 +43,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label fx:id="UPlabel" layoutX="60.0" layoutY="360.0" prefHeight="28.0" prefWidth="220.0" textFill="#e5e5e5" wrapText="true">
+            <Label fx:id="UPlabel" layoutX="60.0" layoutY="360.0" prefHeight="28.0" prefWidth="220.0" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="10.0" />
                </font>
@@ -55,7 +55,7 @@
       </AnchorPane>
       <AnchorPane layoutX="120.0" layoutY="570.0" prefHeight="340.0" prefWidth="600.0" style="-fx-background-color: #404040;">
          <children>
-            <Label layoutX="60.0" layoutY="30.0" prefHeight="40.0" text="Change Password" textFill="#e5e5e5" underline="true">
+            <Label layoutX="60.0" layoutY="30.0" prefHeight="40.0" text="Change Password" textFill="WHITE">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -71,7 +71,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label fx:id="CPlabel" layoutX="60.0" layoutY="275.0" prefHeight="28.0" prefWidth="220.0" textFill="#e5e5e5" wrapText="true">
+            <Label fx:id="CPlabel" layoutX="60.0" layoutY="275.0" prefHeight="28.0" prefWidth="220.0" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="10.0" />
                </font>

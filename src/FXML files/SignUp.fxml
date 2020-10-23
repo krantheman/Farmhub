@@ -16,7 +16,7 @@
    <children>
       <AnchorPane layoutX="450.0" layoutY="50.0" prefHeight="600.0" prefWidth="300.0" style="-fx-background-color: #2E2E2E;">
          <children>
-            <Label layoutX="117.0" layoutY="30.0" text="Sign Up" textAlignment="CENTER" textFill="#e5e5e5">
+            <Label layoutX="117.0" layoutY="30.0" text="Sign Up" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="17.0" />
                </font>
@@ -26,7 +26,7 @@
             <PasswordField fx:id="password" layoutX="51.0" layoutY="160.0" prefWidth="200.0" promptText="Password" stylesheets="@../CSS%20files/Textfield.css" />
             <PasswordField fx:id="confirmpassword" layoutX="51.0" layoutY="205.0" prefWidth="200.0" promptText="Confirm Password" stylesheets="@../CSS%20files/Textfield.css" />
             <TextArea fx:id="address" layoutX="51.0" layoutY="255.0" prefHeight="130.0" prefWidth="200.0" promptText="Address" styleClass="text-area" stylesheets="@../CSS%20files/Textfield.css" wrapText="true" />
-            <ChoiceBox fx:id="accounttype" layoutX="51.0" layoutY="410.0" prefWidth="200.0" style="-fx-background-color: #2E2E2E; -fx-border-color: #e5e5e5; -fx-border-radius: 2;" stylesheets="@../CSS%20files/Textfield.css">
+            <ChoiceBox fx:id="accounttype" layoutX="51.0" layoutY="410.0" prefWidth="200.0" style="-fx-background-color: #2E2E2E; -fx-border-color: white; -fx-border-radius: 2;" stylesheets="@../CSS%20files/Textfield.css">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -45,11 +45,11 @@
       </AnchorPane>
       <AnchorPane layoutX="2.0" layoutY="1.0" prefHeight="400.0" prefWidth="449.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="35.0" layoutY="250.0" text="Your one-stop shopping destination for all fruits and vegetables. &#10;Directly from the farm." textFill="#e5e5e5">
+            <Label layoutX="35.0" layoutY="250.0" text="Your one-stop shopping destination for all fruits and vegetables. &#10;Directly from the farm." textFill="WHITE">
                <font>
                   <Font size="11.0" />
                </font></Label>
-            <Label layoutX="36.0" layoutY="200.0" text="Welcome to FarmHub" textFill="#e5e5e5">
+            <Label layoutX="36.0" layoutY="200.0" text="Welcome to FarmHub" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="27.0" />
                </font>
@@ -61,7 +61,7 @@
             </Button>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="114.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Desktop/logo.png" />
+                  <Image url="@../../logo.png" />
                </image>
             </ImageView>
          </children>

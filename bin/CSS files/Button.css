@@ -7,7 +7,7 @@
 
 .SideButton:selected{
 	 -fx-background-color: #5abf8d, #2E2E2E;
-	 -fx-background-insets: 0, 0 0 0 3;
+	 -fx-background-insets: 0, 0 3 0 0;
 }
 
 
@@ -15,6 +15,7 @@
 .GreenButton{
 	-fx-background-color: #5abf8d;
 	-fx-background-radius: 0;
+	-fx-text-fill: #2E2E2E;
 }
 
 .GreenButton:hover{ -fx-background-color: #51ab7e; }
