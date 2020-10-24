@@ -10,16 +10,12 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage stage) throws Exception {
-		try {
-	
-			Parent root = FXMLLoader.load(getClass().getResource("../FXML files/SignIn.fxml"));
-			stage.setScene(new Scene(root));
-			stage.setTitle("FarmHub");
-			stage.show();
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+
+		Parent root = FXMLLoader.load(getClass().getResource("../FXML files/SignIn.fxml"));
+		stage.setScene(new Scene(root));
+		stage.setTitle("FarmHub");
+		stage.show();
+
 	}
 
 	public static void main(String[] args) {
