@@ -15,55 +15,55 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-public class Seller implements Initializable {
+public class Buyer implements Initializable{
 
     @FXML
     private MenuBar account;
-    
+
     @FXML
     private Label welcome;
-    
+
     @FXML
-    private CheckBox live;
+    private TextField searchTF;
 
     @FXML
     private ToggleGroup sidebarTG;
 
     @FXML
     private BorderPane mainpane;
-    
+
     //For controlling toggle selection of toggle group
     boolean chk = true;
     
     Fxmlloader loader = new Fxmlloader();
-    
+
+    @FXML
+    void vendorsAction(ActionEvent event) throws Exception {
+    	setAction("", true);
+    }
+
     @FXML
     void ordersAction(ActionEvent event) throws Exception {
     	setAction("", true);
     }
 
     @FXML
-    void inventoryAction(ActionEvent event) throws Exception {
-    	setAction("SellerInventory.fxml", true);
+    void searchAction(ActionEvent event) throws Exception {
+    	setAction("", false);
     }
 
     @FXML
-    void historyAction(ActionEvent event) throws Exception {
-    	setAction("", true);
-    }
-
-    @FXML
-    void statisticsAction(ActionEvent event) throws Exception {
-    	setAction("", true);
+    void mycartAction(ActionEvent event) throws Exception {
+    	setAction("", false);
     }
 
     @FXML
@@ -72,13 +72,8 @@ public class Seller implements Initializable {
     }
 
     @FXML
-    void goliveAction(ActionEvent event) {
-    	UserDB.goLive(live.isSelected());
-    }
-
-    @FXML
     void signoutAction(ActionEvent event) throws IOException {
-    	
+
     	Alert alert = new Alert(AlertType.CONFIRMATION);
     	alert.setTitle("FarmHub");
     	alert.setContentText("Are you sure you want to sign out?");
@@ -105,9 +100,11 @@ public class Seller implements Initializable {
     	}
 
     	else {
+    		
     		alert.close();
+    		
     	}
-
+    	
     }
 
 	@Override

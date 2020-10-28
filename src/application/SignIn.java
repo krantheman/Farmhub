@@ -29,13 +29,23 @@ public class SignIn {
     	
 		String emailidText = emailid.getText();
 		String passwordText = password.getText();
-		UserDB.SignIn(emailidText, passwordText);
+		UserDB.signIn(emailidText, passwordText);
     	error.setText(UserDB.error);
     	
 		//Sign in into seller account
 		if(UserDB.userType.equals("Seller")) {
 			
 			Parent root = FXMLLoader.load(getClass().getResource("../FXML files/Seller.fxml"));
+			Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+			stage.setScene(new Scene(root));
+			stage.show();
+			
+		}
+
+		//Sign in into buyer account
+		else if(UserDB.userType.equals("Buyer")) {
+			
+			Parent root = FXMLLoader.load(getClass().getResource("../FXML files/Buyer.fxml"));
 			Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 			stage.setScene(new Scene(root));
 			stage.show();

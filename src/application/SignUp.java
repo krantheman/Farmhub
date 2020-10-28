@@ -64,9 +64,19 @@ public class SignUp {
 			create(nameText, emailidText, passwordText, confirmpasswordText, addressText, accounttypeText);
 
 			//Sign in into seller account
-			if(UserDB.userType == "Seller") {
+			if(UserDB.userType.equals("Seller")) {
 				
 				Parent root = FXMLLoader.load(getClass().getResource("../FXML files/Seller.fxml"));
+				Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+				stage.setScene(new Scene(root));
+				stage.show();
+				
+			}
+
+			//Sign in into buyer account
+			else if(UserDB.userType.equals("Buyer")) {
+				
+				Parent root = FXMLLoader.load(getClass().getResource("../FXML files/Buyer.fxml"));
 				Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 				stage.setScene(new Scene(root));
 				stage.show();
