@@ -48,7 +48,7 @@ public class Buyer implements Initializable{
 
     @FXML
     void vendorsAction(ActionEvent event) throws Exception {
-    	setAction("", true);
+    	setAction("BuyerVendors.fxml", true);
     }
 
     @FXML
@@ -100,9 +100,7 @@ public class Buyer implements Initializable{
     	}
 
     	else {
-    		
     		alert.close();
-    		
     	}
     	
     }

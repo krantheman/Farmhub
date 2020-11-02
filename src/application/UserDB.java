@@ -4,6 +4,7 @@ import java.sql.*;
 
 import javax.mail.MessagingException;
 
+import application.BuyerVendors.Vendors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -191,55 +192,55 @@ public class UserDB {
 	//For displaying inventory to seller
 	static  ObservableList<Inventory> displayInventory(String available, String category) throws SQLException {
 		
-			//Connection
-			Connection connection = DriverManager.getConnection(url, username, password);
-			
-			//Query statement
-			String query;
+		//Connection
+		Connection connection = DriverManager.getConnection(url, username, password);
+		
+		//Query statement
+		String query;
 
-			if (category.equals("All")) {
+		if (category.equals("All")) {
 
-				if (available.equals("Available")) {				
-					query = String.format("select * from inventory where seller = '%s' and available = '1';", userEmail);
-				}
+			if (available.equals("Available")) {				
+				query = String.format("select * from inventory where seller = '%s' and available = '1';", userEmail);
+			}
 
-				else if (available.equals("Unavailable")) {				
-					query = String.format("select * from inventory where seller = '%s' and available = '0';", userEmail);
-				}
-
-				else {
-					query = String.format("select * from inventory where seller = '%s';", userEmail);
-				}
-
+			else if (available.equals("Unavailable")) {				
+				query = String.format("select * from inventory where seller = '%s' and available = '0';", userEmail);
 			}
 
 			else {
-
-				if (available.equals("Available")) {				
-					query = String.format("select * from inventory where seller = '%s' and available = '1' and category = '%s';", userEmail, category);
-				}
-
-				else if (available.equals("Unavailable")) {				
-					query = String.format("select * from inventory where seller = '%s' and available = '0' and category = '%s';", userEmail, category);
-				}
-
-				else {
-					query = String.format("select * from inventory where seller = '%s' and category = '%s';", userEmail, category);
-				}
-
+				query = String.format("select * from inventory where seller = '%s';", userEmail);
 			}
 
-			PreparedStatement ps = connection.prepareStatement(query);
-			ResultSet rs = ps.executeQuery();
-			
-			//List for storing data
-			ObservableList<Inventory> list = FXCollections.observableArrayList();
-			while (rs.next()) {
-				list.add(new Inventory(rs.getString("item"), rs.getString("quantity"), rs.getString("category"), rs.getDouble("price"), rs.getByte("available")));
+		}
+
+		else {
+
+			if (available.equals("Available")) {				
+				query = String.format("select * from inventory where seller = '%s' and available = '1' and category = '%s';", userEmail, category);
 			}
-			
-			return list;
-			
+
+			else if (available.equals("Unavailable")) {				
+				query = String.format("select * from inventory where seller = '%s' and available = '0' and category = '%s';", userEmail, category);
+			}
+
+			else {
+				query = String.format("select * from inventory where seller = '%s' and category = '%s';", userEmail, category);
+			}
+
+		}
+
+		PreparedStatement ps = connection.prepareStatement(query);
+		ResultSet rs = ps.executeQuery();
+		
+		//List for storing data
+		ObservableList<Inventory> list = FXCollections.observableArrayList();
+		while (rs.next()) {
+			list.add(new Inventory(rs.getString("item"), rs.getString("quantity"), rs.getString("category"), rs.getDouble("price"), rs.getByte("available")));
+		}
+		
+		return list;
+		
 	}
 	
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
@@ -330,6 +331,30 @@ public class UserDB {
 			e.printStackTrace();
 		}
 		
+	}
+	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+	
+	//For displaying available vendors(sellers) to buyers
+	static  ObservableList<Vendors> displayVendors() throws SQLException {
+		
+		//Connection
+		Connection connection = DriverManager.getConnection(url, username, password);
+			
+		//Query statement
+		String query = "select * from users where live = '1'";
+
+		PreparedStatement ps = connection.prepareStatement(query);
+		ResultSet rs = ps.executeQuery();
+		
+		//List for storing data
+		ObservableList<Vendors> list = FXCollections.observableArrayList();
+		while (rs.next()) {
+			list.add(new Vendors(rs.getString("email"), rs.getString("name"), rs.getDouble("rating"), rs.getInt("reviews")));
+		}
+		
+		return list;
+			
 	}
 	
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	

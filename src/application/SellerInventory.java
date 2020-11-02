@@ -71,6 +71,8 @@ public class SellerInventory implements Initializable{
     String availableOption="All";
     String categoryOption="All";
     
+    ObservableList<Inventory> list;
+
     @FXML
     void addAction(ActionEvent event) throws SQLException {
     	
@@ -132,8 +134,6 @@ public class SellerInventory implements Initializable{
 
     }
     
-    ObservableList<Inventory> list;
-
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
