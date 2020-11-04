@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorpane" maxHeight="200.0" maxWidth="1400.0" prefHeight="200.0" prefWidth="1400.0" style="-fx-background-color: #404040;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anchorpane" maxHeight="260.0" maxWidth="1200.0" prefHeight="260.0" prefWidth="1200.0" style="-fx-background-color: #404040;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="name" layoutX="200.0" layoutY="35.0" maxHeight="600.0" prefWidth="600.0" text="Abc Xyz Fresh Greens" textFill="WHITE" underline="true">
+      <Label fx:id="name" layoutX="200.0" layoutY="35.0" maxWidth="600.0" prefWidth="600.0" text="ABC XYZ Fresh Greens" textFill="WHITE">
          <font>
-            <Font size="30.0" />
+            <Font name="System Bold" size="40.0" />
          </font>
       </Label>
       <Label fx:id="address" alignment="TOP_LEFT" layoutX="200.0" layoutY="100.0" maxHeight="63.0" maxWidth="600.0" prefHeight="63.0" prefWidth="600.0" text="East of Trodden, 910 019." textFill="WHITE" wrapText="true">
@@ -19,22 +19,33 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="1010.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="840.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../icons/star.png" />
          </image>
       </ImageView>
-      <Label fx:id="stars" layoutX="1050.0" layoutY="45.0" text="4.9/5" textFill="WHITE">
+      <Label fx:id="stars" layoutX="880.0" layoutY="50.0" text="4.9" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="reviews" layoutX="1100.0" layoutY="45.0" text="(200 reviews)" textFill="WHITE">
+      <Label fx:id="reviews" layoutX="915.0" layoutY="50.0" text="(200 reviews)" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="email" layoutX="1000.0" layoutY="103.0" text="Contact: abc.xyz@gmail.com" textFill="WHITE" />
+      <Label fx:id="email" layoutX="200.0" layoutY="200.0" text="Contact: abc.xyz@gmail.com" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor></Label>
+      <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="120.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../icons/plant.png" />
+         </image>
+      </ImageView>
    </children>
    <cursor>
       <Cursor fx:constant="HAND" />

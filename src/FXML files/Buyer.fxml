@@ -65,7 +65,7 @@
          </children></AnchorPane>
       <AnchorPane layoutY="40.0" prefHeight="1045.0" prefWidth="150.0" style="-fx-background-color: #404040;">
          <children>
-            <ToggleButton layoutY="14.0" mnemonicParsing="false" onAction="#vendorsAction" prefHeight="40.0" prefWidth="150.0" styleClass="SideButton" stylesheets="@../CSS%20files/Button.css" text="Vendors" textFill="WHITE">
+            <ToggleButton layoutY="14.0" mnemonicParsing="false" onAction="#vendorsAction" prefHeight="40.0" prefWidth="150.0" selected="true" styleClass="SideButton" stylesheets="@../CSS%20files/Button.css" text="Vendors" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

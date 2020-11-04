@@ -111,6 +111,12 @@ public class Buyer implements Initializable{
     	String welcomeText = "Welcome, " + UserDB.userName;
 		welcome.setText(welcomeText);
 		
+		try {
+			setAction("BuyerVendors.fxml", true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		//Preventing side bar toggle group from not having a toggle selected
 		sidebarTG.selectedToggleProperty().addListener((obsVal, oldVal, newVal) -> {
 		    if (newVal == null && chk == true)

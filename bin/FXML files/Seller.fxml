@@ -36,7 +36,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </MenuBar>
-            <Label fx:id="welcome" alignment="BOTTOM_LEFT" prefHeight="35.0" prefWidth="300.0" text="Welcome, User" textFill="#2e2e2e">
+            <Label fx:id="welcome" alignment="BOTTOM_LEFT" prefHeight="35.0" prefWidth="500.0" text="Welcome, User" textFill="#2e2e2e">
                <font>
                   <Font name="System Italic" size="17.0" />
                </font>

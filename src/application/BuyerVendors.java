@@ -16,7 +16,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 
-//Controller class for Vendors listview
 public class BuyerVendors implements Initializable {
 
 	
@@ -127,15 +126,18 @@ public class BuyerVendors implements Initializable {
 	        }
 
 	        else {
+
 	        	name.setText(item.getName());
 	        	address.setText(item.getAddress());
 	        	email.setText("Contact: " + item.getEmail());
+
 	        	if(item.getRating() == null) {
-	        		stars.setText("No ratings yet");
+	        		stars.setText("No reviews yet");
 	        		reviews.setText("");
 	        	}
+
 	        	else {
-	        		stars.setText(item.getRating() + "/5");
+	        		stars.setText(item.getRating());
 	        		reviews.setText("(" + item.getNo_of_reviews() + " reviews)");
 	        	}
 
@@ -161,16 +163,23 @@ public class BuyerVendors implements Initializable {
     @FXML
     private ListView<Vendors> listview;
     
+    @FXML
+    private Label novendors;
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 		try {
-			list = UserDB.displayVendors(); // Function that returns observable list from database 
+			list = UserDB.displayVendors();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		if (list.size() == 0)
+			novendors.setText("Sorry, no vendors available at the moment.");
+		
 		listview.setItems(list);
 		listview.setCellFactory(new VendorsCellFactory());
+
 	}
 
 }
