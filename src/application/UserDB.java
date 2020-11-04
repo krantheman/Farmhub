@@ -5,6 +5,7 @@ import java.sql.*;
 import javax.mail.MessagingException;
 
 import application.BuyerVendors.Vendors;
+import application.SellerInventory.Inventory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -19,6 +20,7 @@ public class UserDB {
 	static String userPassword = "";
 	static String userAddress = "";
 	static String userType = "";
+	static byte userLive = 0;
 	static String error = "";
 	
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
@@ -86,6 +88,7 @@ public class UserDB {
 				userName = rs.getString(2);
 				userAddress = rs.getString(5);
 				userType = rs.getString(1);
+				userLive = rs.getByte(6);
 				
 			}
 
@@ -350,7 +353,7 @@ public class UserDB {
 		//List for storing data
 		ObservableList<Vendors> list = FXCollections.observableArrayList();
 		while (rs.next()) {
-			list.add(new Vendors(rs.getString("email"), rs.getString("name"), rs.getDouble("rating"), rs.getInt("reviews")));
+			list.add(new Vendors(rs.getString("email"), rs.getString("name"), rs.getString("address"), rs.getString("rating"), rs.getString("reviews")));
 		}
 		
 		return list;

@@ -116,6 +116,9 @@ public class Seller implements Initializable {
     	String welcomeText = "Welcome, " + UserDB.userName;
 		welcome.setText(welcomeText);
 		
+		if (UserDB.userLive == 1)
+			live.setSelected(true);
+		
 		//Preventing side bar toggle group from not having a toggle selected
 		sidebarTG.selectedToggleProperty().addListener((obsVal, oldVal, newVal) -> {
 		    if (newVal == null && chk == true)

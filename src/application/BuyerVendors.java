@@ -1,21 +1,29 @@
 package application;
 
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
+import javafx.util.Callback;
 
+//Controller class for Vendors listview
 public class BuyerVendors implements Initializable {
 
+	
+	//Getters, setters and constructor for list/listview object
 	public static class Vendors {
 
-		String email, name;
-		double rating;
-		int no_of_reviews;
+		String email, name, address, no_of_reviews, rating;
 
 		public String getEmail() {
 			return email;
@@ -33,56 +41,136 @@ public class BuyerVendors implements Initializable {
 			this.name = name;
 		}
 
-		public double getRating() {
+		public String getAddress() {
+			return address;
+		}
+
+		public void setAddress(String address) {
+			this.address = address;
+		}
+
+		public String getRating() {
 			return rating;
 		}
 
-		public void setRating(double rating) {
+		public void setRating(String rating) {
 			this.rating = rating;
 		}
 
-		public int getNo_of_reviews() {
+		public String getNo_of_reviews() {
 			return no_of_reviews;
 		}
 
-		public void setNo_of_reviews(int no_of_reviews) {
+		public void setNo_of_reviews(String no_of_reviews) {
 			this.no_of_reviews = no_of_reviews;
 		}
 
-		public Vendors(String email, String name, double rating, int no_of_reviews) {
+		public Vendors(String email, String name, String address, String rating, String no_of_reviews) {
 			super();
 			this.email = email;
 			this.name = name;
+			this.address = address;
 			this.rating = rating;
 			this.no_of_reviews = no_of_reviews;
 		}
 
 	}
+
+	
+    ObservableList<Vendors> list;
+
+    //Controller class for Vendors listcell
+	public class VendorsCell extends ListCell<Vendors> {
+		
+	    @FXML
+	    private AnchorPane anchorpane;
+
+	    @FXML
+	    private Label name;
+
+	    @FXML
+	    private Label address;
+
+	    @FXML
+	    private Label stars;
+
+	    @FXML
+	    private Label reviews;
+
+	    @FXML
+	    private Label email;
+	    
+	    public VendorsCell() {
+	        loadFXML();
+	    }
+
+	    private void loadFXML() {
+	        try {
+	            FXMLLoader loader = new FXMLLoader(getClass().getResource("../FXML files/VendorsCell.fxml"));
+	            loader.setController(this);
+	            loader.load();
+	        }
+	        catch (IOException e) {
+	            throw new RuntimeException(e);
+	        }
+	    }
+
+	    @Override
+	    protected void updateItem(Vendors item, boolean empty) {
+
+	        super.updateItem(item, empty);
+
+	        if(empty) {
+	            setText(null);
+	            setContentDisplay(ContentDisplay.TEXT_ONLY);
+	            setGraphic(anchorpane);
+	        }
+
+	        else {
+	        	name.setText(item.getName());
+	        	address.setText(item.getAddress());
+	        	email.setText("Contact: " + item.getEmail());
+	        	if(item.getRating() == null) {
+	        		stars.setText("No ratings yet");
+	        		reviews.setText("");
+	        	}
+	        	else {
+	        		stars.setText(item.getRating() + "/5");
+	        		reviews.setText("(" + item.getNo_of_reviews() + " reviews)");
+	        	}
+
+	            setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+	            setGraphic(anchorpane);
+
+	        }
+	        
+	    }
+	    
+	}
+	
+	
+	//CellFactory
+	public class VendorsCellFactory implements Callback<ListView<Vendors>, ListCell<Vendors>> {
+	    @Override
+	    public ListCell<Vendors> call(ListView<Vendors> param) {
+	        return new VendorsCell();
+	    }
+	}
+	
 	
     @FXML
-    private ListView<String> listview;
-    
-    ObservableList<Vendors> list = FXCollections.observableArrayList();
-
-//    static class Cell extends ListCell<String> {
-//    	
-//    	VBox vbox = new VBox();
-//    	Pane pane = new Pane();
-//
-//    	Label namelabel = new Label();
-//    	Label addresslabel = new Label();
-//    	Label ratinglabel = new Label();
-//
-//		Image star = new Image("../icons/star.png");
-//		ImageView img = new ImageView(star);
-//
-//    }
+    private ListView<Vendors> listview;
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-//		listview.setItems(list);
-
+		try {
+			list = UserDB.displayVendors(); // Function that returns observable list from database 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		listview.setItems(list);
+		listview.setCellFactory(new VendorsCellFactory());
 	}
 
 }
