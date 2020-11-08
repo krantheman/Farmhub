@@ -21,6 +21,13 @@ public class UserDB {
 	static String userAddress = "";
 	static String userType = "";
 	static byte userLive = 0;
+	
+	static String vendorName = "";
+	static String vendorEmail = "";
+	static String vendorAddress = "";
+	static String vendorStars = "";
+	static String vendorReviews = "";
+	
 	static String error = "";
 	
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
@@ -192,8 +199,8 @@ public class UserDB {
 	
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 	
-	//For displaying inventory to seller
-	static  ObservableList<Inventory> displayInventory(String available, String category) throws SQLException {
+	//For displaying inventory to seller or catalog to buyer
+	static  ObservableList<Inventory> displayInventory(String email, String available, String category) throws SQLException {
 		
 		//Connection
 		Connection connection = DriverManager.getConnection(url, username, password);
@@ -204,15 +211,15 @@ public class UserDB {
 		if (category.equals("All")) {
 
 			if (available.equals("Available")) {				
-				query = String.format("select * from inventory where seller = '%s' and available = '1';", userEmail);
+				query = String.format("select * from inventory where seller = '%s' and available = '1';", email);
 			}
 
 			else if (available.equals("Unavailable")) {				
-				query = String.format("select * from inventory where seller = '%s' and available = '0';", userEmail);
+				query = String.format("select * from inventory where seller = '%s' and available = '0';", email);
 			}
 
 			else {
-				query = String.format("select * from inventory where seller = '%s';", userEmail);
+				query = String.format("select * from inventory where seller = '%s';", email);
 			}
 
 		}
@@ -220,15 +227,15 @@ public class UserDB {
 		else {
 
 			if (available.equals("Available")) {				
-				query = String.format("select * from inventory where seller = '%s' and available = '1' and category = '%s';", userEmail, category);
+				query = String.format("select * from inventory where seller = '%s' and available = '1' and category = '%s';", email, category);
 			}
 
 			else if (available.equals("Unavailable")) {				
-				query = String.format("select * from inventory where seller = '%s' and available = '0' and category = '%s';", userEmail, category);
+				query = String.format("select * from inventory where seller = '%s' and available = '0' and category = '%s';", email, category);
 			}
 
 			else {
-				query = String.format("select * from inventory where seller = '%s' and category = '%s';", userEmail, category);
+				query = String.format("select * from inventory where seller = '%s' and category = '%s';", email, category);
 			}
 
 		}
@@ -362,6 +369,178 @@ public class UserDB {
 	
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 
+	//For getting number of items present in buyer's cart
+	static int getItemNumber(String item, String quantity) {
+		
+		int number=0;
+		
+		try {
+			
+			//Connection
+			Connection connection = DriverManager.getConnection(url, username, password);
+		
+			//Query statement
+			String query = String.format("select * from cart where buyer = '%s' and seller = '%s' and item = '%s' and quantity = '%s';", userEmail, vendorEmail, item, quantity);
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(query);
+			
+			//Seeing if item exists in cart
+			if(rs.next()) {	
+				number = rs.getInt("number");
+			}
+
+			//Closing connection
+			connection.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return number;
+		
+	}
+	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+
+	//For adding items to the cart
+	static void addToCart(String item, String quantity, double price, int number) {
+		
+		try {
+			
+			//Connection
+			Connection connection = DriverManager.getConnection(url, username, password);
+		
+			//Query statement
+			String query = String.format("insert into cart(buyer, seller, item, quantity, price, number) values('%s', '%s', '%s', '%s', '%.2f', '1');", userEmail, vendorEmail, item, quantity, price);
+			Statement statement = connection.createStatement();
+			statement.executeUpdate(query);
+
+			//Closing connection
+			connection.close();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+	
+	//For updating cart item numbers
+	static void updateCart(String item, String quantity, int number) {
+		
+		try {
+			
+			//Connection
+			Connection connection = DriverManager.getConnection(url, username, password);
+		
+			//Query statement
+			String query = String.format("update cart set number = '%d' where buyer = '%s' and seller = '%s' and item = '%s' and quantity = '%s';", number, userEmail, vendorEmail, item, quantity);
+			Statement statement = connection.createStatement();
+			statement.executeUpdate(query);
+
+			//Closing connection
+			connection.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+
+	//For deleting an item from the cart
+	static void deleteCart (String item, String quantity) {
+		
+		try {
+			
+			//Connection
+			Connection connection = DriverManager.getConnection(url, username, password);
+		
+			//Query statement
+			String query = String.format("delete from cart where buyer = '%s' and seller = '%s' and item = '%s' and quantity = '%s';", userEmail, vendorEmail, item, quantity);
+			Statement statement = connection.createStatement();
+			statement.executeUpdate(query);
+
+			//Closing connection
+			connection.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+
+	//To check if cart contains items from other sellers
+	static String duplicateCheck () {
+		
+		String check = "";
+
+		try {
+			
+			//Connection
+			Connection connection = DriverManager.getConnection(url, username, password);
+		
+			//Query statement
+			String query = String.format("select * from cart where buyer = '%s';", userEmail);
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(query);
+			
+			//Seeing if item exists in cart
+			if(rs.next()) {	
+				check = rs.getString("seller");
+			}
+
+			//Closing connection
+			connection.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return check;
+		
+	}
+	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+
+	//To check if cart contains items from other sellers
+	static String getName (String email) {
+		
+		String name = "";
+
+		try {
+			
+			//Connection
+			Connection connection = DriverManager.getConnection(url, username, password);
+		
+			//Query statement
+			String query = String.format("select * from users where email = '%s';", email);
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(query);
+			
+			//Seeing if item exists in cart
+			if(rs.next()) {	
+				name = rs.getString("name");
+			}
+
+			//Closing connection
+			connection.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return name;
+		
+	}
+	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+
 	//For signing out 
 	static void signOut() {
 		
@@ -370,6 +549,12 @@ public class UserDB {
 		userPassword = "";
 		userAddress = "";
 		userType = "";
+
+		vendorName = "";
+		vendorEmail = "";
+		vendorAddress = "";
+		vendorStars = "";
+		vendorReviews = "";
 		
 	}
 	

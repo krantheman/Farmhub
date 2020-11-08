@@ -49,7 +49,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <TextField fx:id="searchTF" layoutX="300.0" layoutY="7.0" onAction="#searchAction" prefWidth="1285.0" promptText="Search for items" />
+            <TextField fx:id="searchTF" layoutX="300.0" layoutY="7.0" onAction="#searchAction" prefWidth="1285.0" promptText="Search for vendors" />
             <Button layoutX="1590.0" layoutY="7.0" mnemonicParsing="false" onAction="#searchAction" styleClass="GreenButton2" stylesheets="@../CSS%20files/Button.css">
                <graphic>
                   <ImageView fitHeight="15.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">

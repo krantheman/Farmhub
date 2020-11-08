@@ -122,7 +122,7 @@ public class Buyer implements Initializable{
 		    if (newVal == null && chk == true)
 		        oldVal.setSelected(true);
 		});
-		
+    	
 	}
 
     void setAction(String screen, boolean check) throws Exception {

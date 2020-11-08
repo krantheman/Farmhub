@@ -1,5 +1,7 @@
 package application;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -13,16 +15,17 @@ import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 
 public class BuyerVendors implements Initializable {
 
-	
 	//Getters, setters and constructor for list/listview object
 	public static class Vendors {
 
-		String email, name, address, no_of_reviews, rating;
+		String email, name, address, reviews, stars;
 
 		public String getEmail() {
 			return email;
@@ -48,41 +51,43 @@ public class BuyerVendors implements Initializable {
 			this.address = address;
 		}
 
-		public String getRating() {
-			return rating;
+		public String getStars() {
+			return stars;
 		}
 
-		public void setRating(String rating) {
-			this.rating = rating;
+		public void setstars(String stars) {
+			this.stars = stars;
 		}
 
-		public String getNo_of_reviews() {
-			return no_of_reviews;
+		public String getReviews() {
+			return reviews;
 		}
 
-		public void setNo_of_reviews(String no_of_reviews) {
-			this.no_of_reviews = no_of_reviews;
+		public void setreviews(String reviews) {
+			this.reviews = reviews;
 		}
 
-		public Vendors(String email, String name, String address, String rating, String no_of_reviews) {
+		public Vendors(String email, String name, String address, String stars, String reviews) {
 			super();
 			this.email = email;
 			this.name = name;
 			this.address = address;
-			this.rating = rating;
-			this.no_of_reviews = no_of_reviews;
+			this.stars = stars;
+			this.reviews = reviews;
 		}
 
 	}
 
-	
-    ObservableList<Vendors> list;
 
+	
     //Controller class for Vendors listcell
 	public class VendorsCell extends ListCell<Vendors> {
 		
 	    @FXML
 	    private AnchorPane anchorpane;
+	    
+	    @FXML
+	    private ImageView imageview;
 
 	    @FXML
 	    private Label name;
@@ -113,6 +118,8 @@ public class BuyerVendors implements Initializable {
 	            throw new RuntimeException(e);
 	        }
 	    }
+	    
+	    int i = 1;
 
 	    @Override
 	    protected void updateItem(Vendors item, boolean empty) {
@@ -126,19 +133,34 @@ public class BuyerVendors implements Initializable {
 	        }
 
 	        else {
-
+	        	
+	        	String imgfile;
+	        	if (getIndex()%2 == 0)
+	        		imgfile = "/home/krantheman/eclipse-workspace/FX Presents/icons/farmer.png";
+	        	else
+	        		imgfile = "/home/krantheman/eclipse-workspace/FX Presents/icons/farmer2.png";
+	        	
+	        	FileInputStream input;
+				try {
+					input = new FileInputStream(imgfile);
+					Image image = new Image(input);
+					imageview.setImage(image);
+				} catch (FileNotFoundException e1) {
+					e1.printStackTrace();
+				}
+	        	
 	        	name.setText(item.getName());
 	        	address.setText(item.getAddress());
 	        	email.setText("Contact: " + item.getEmail());
 
-	        	if(item.getRating() == null) {
+	        	if(item.getStars() == null) {
 	        		stars.setText("No reviews yet");
 	        		reviews.setText("");
 	        	}
 
 	        	else {
-	        		stars.setText(item.getRating());
-	        		reviews.setText("(" + item.getNo_of_reviews() + " reviews)");
+	        		stars.setText(item.getStars());
+	        		reviews.setText("(" + item.getReviews() + " reviews)");
 	        	}
 
 	            setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
@@ -149,8 +171,7 @@ public class BuyerVendors implements Initializable {
 	    }
 	    
 	}
-	
-	
+
 	//CellFactory
 	public class VendorsCellFactory implements Callback<ListView<Vendors>, ListCell<Vendors>> {
 	    @Override
@@ -159,6 +180,10 @@ public class BuyerVendors implements Initializable {
 	    }
 	}
 	
+
+	
+    @FXML
+    private AnchorPane mainpane;
 	
     @FXML
     private ListView<Vendors> listview;
@@ -166,6 +191,8 @@ public class BuyerVendors implements Initializable {
     @FXML
     private Label novendors;
     
+    ObservableList<Vendors> list;
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
@@ -179,6 +206,24 @@ public class BuyerVendors implements Initializable {
 		
 		listview.setItems(list);
 		listview.setCellFactory(new VendorsCellFactory());
+		listview.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue)-> {
+			
+			//Inputting vendor details
+			UserDB.vendorName = newValue.getName();
+			UserDB.vendorEmail = newValue.getEmail();
+			UserDB.vendorAddress = newValue.getAddress();
+			UserDB.vendorStars = newValue.getStars();
+			UserDB.vendorReviews = newValue.getReviews();
+			
+			//Changing main pane
+			try {
+				AnchorPane pane = FXMLLoader.load(getClass().getResource("../FXML files/VendorsCatalog.fxml"));
+				mainpane.getChildren().setAll(pane);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		});
 
 	}
 

@@ -23,7 +23,6 @@
 .GreenButton:pressed{
     -fx-background-color: #489971;
     -fx-border-color: rgb(49, 89, 23);
-	-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 
 .GreenButton2{
