@@ -139,14 +139,15 @@ public class VendorsCatalog implements Initializable {
 
 	        		else {
 	        			
-	        			Alert alert = new Alert(AlertType.ERROR);
+	        			Alert alert = new Alert(AlertType.WARNING);
 	        			alert.setTitle("FarmHub");
-	        			alert.setContentText("You have existing items in your cart from " + UserDB.getName(check) + ". Please clear your cart first");
-	        			alert.showAndWait();
-
+	        			alert.setHeaderText("");
+	        			alert.setContentText("You have existing items in your cart from " + UserDB.getName(check) + ". Please clear your cart first.");
+	        			alert.show();
+	        			
 	        			DialogPane dialogPane = alert.getDialogPane();
-	        			dialogPane.getStylesheets().add(getClass().getResource("myDialogs.css").toExternalForm());
-	        			dialogPane.getStyleClass().add("myDialog");
+	        			dialogPane.getStylesheets().add(getClass().getResource("../CSS files/myDialogs.css").toExternalForm());
+	        			dialogPane.getStyleClass().add("dialog-pane2");
 	        			
 	        		}
 
@@ -209,9 +210,19 @@ public class VendorsCatalog implements Initializable {
     @FXML
     private TextField searchTF;
     
+    String searchFilter = "";
+	    
     @FXML
     void searchAction(ActionEvent event) {
-    	System.out.println(searchTF.getText());
+
+    	searchFilter = searchTF.getText();
+    	try {
+			list = UserDB.displayInventory(UserDB.vendorEmail, "Available", categoryOption, searchFilter);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    	listview.setItems(list);
+    	
     }
 
     String categoryOption = "All";
@@ -240,7 +251,7 @@ public class VendorsCatalog implements Initializable {
     	category.getSelectionModel().selectedItemProperty().addListener( (v, oldval, newval) -> {
     		try {
     			categoryOption = newval;
-				list = UserDB.displayInventory(UserDB.vendorEmail, "Available", categoryOption);
+				list = UserDB.displayInventory(UserDB.vendorEmail, "Available", categoryOption, searchFilter);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -249,7 +260,7 @@ public class VendorsCatalog implements Initializable {
 
     	//For displaying inventory
     	try {
-			list = UserDB.displayInventory(UserDB.vendorEmail, "Available", categoryOption);
+			list = UserDB.displayInventory(UserDB.vendorEmail, "Available", categoryOption, searchFilter);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

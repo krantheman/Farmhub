@@ -200,7 +200,7 @@ public class UserDB {
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 	
 	//For displaying inventory to seller or catalog to buyer
-	static  ObservableList<Inventory> displayInventory(String email, String available, String category) throws SQLException {
+	static  ObservableList<Inventory> displayInventory(String email, String available, String category, String search) throws SQLException {
 		
 		//Connection
 		Connection connection = DriverManager.getConnection(url, username, password);
@@ -211,7 +211,7 @@ public class UserDB {
 		if (category.equals("All")) {
 
 			if (available.equals("Available")) {				
-				query = String.format("select * from inventory where seller = '%s' and available = '1';", email);
+				query = "select * from inventory where lower(item) like lower('%" + search + "%') and seller = '" + email + "' and available = '1';";
 			}
 
 			else if (available.equals("Unavailable")) {				
@@ -227,7 +227,7 @@ public class UserDB {
 		else {
 
 			if (available.equals("Available")) {				
-				query = String.format("select * from inventory where seller = '%s' and available = '1' and category = '%s';", email, category);
+				query = "select * from inventory where lower(item) like lower('%" + search + "%') and seller = '" + email + "' and available = '1' and category = '" + category + "';";
 			}
 
 			else if (available.equals("Unavailable")) {				

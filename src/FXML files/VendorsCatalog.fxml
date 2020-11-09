@@ -58,7 +58,7 @@
       </AnchorPane>
       <AnchorPane layoutX="380.0" layoutY="190.0" prefHeight="50.0" prefWidth="1000.0" style="-fx-background-color: #404040;">
          <children>
-            <TextField fx:id="searchTF" layoutX="115.0" layoutY="12.0" prefWidth="550.0" promptText="Search for items" />
+            <TextField fx:id="searchTF" layoutX="115.0" layoutY="12.0" onAction="#searchAction" prefWidth="550.0" promptText="Search for items" />
             <ChoiceBox fx:id="category" layoutX="750.0" layoutY="12.0" prefWidth="150.0" style="-fx-background-color: #404040; -fx-border-color: white; -fx-border-radius: 2;" stylesheets="@../CSS%20files/Textfield.css">
                <cursor>
                   <Cursor fx:constant="HAND" />

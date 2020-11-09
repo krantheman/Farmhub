@@ -156,7 +156,7 @@ public class SellerInventory implements Initializable{
     			UserDB.addInventory(itemText, quantityText, priceText, categoryText);
     			
     			//Updating table
-    			list = UserDB.displayInventory(UserDB.userEmail, availableOption, categoryOption);
+    			list = UserDB.displayInventory(UserDB.userEmail, availableOption, categoryOption, "");
     			listings.setItems(list);
 
     			//Resetting fields
@@ -188,7 +188,7 @@ public class SellerInventory implements Initializable{
     		UserDB.itemDelete(inv.getItem(), inv.getQuantity());
 
     		//Updating table
-    		list = UserDB.displayInventory(UserDB.userEmail, availableOption, categoryOption);
+    		list = UserDB.displayInventory(UserDB.userEmail, availableOption, categoryOption, "");
     		listings.setItems(list);
 
     		//Resetting fields
@@ -209,7 +209,7 @@ public class SellerInventory implements Initializable{
     	availableFilter.getSelectionModel().selectedItemProperty().addListener( (v, oldval, newval) -> {
     		availableOption = newval;
     		try {
-				list = UserDB.displayInventory(UserDB.userEmail, availableOption, categoryOption);
+				list = UserDB.displayInventory(UserDB.userEmail, availableOption, categoryOption, "");
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -222,7 +222,7 @@ public class SellerInventory implements Initializable{
     	categoryFilter.getSelectionModel().selectedItemProperty().addListener( (v, oldval, newval) -> {
     		categoryOption = newval;
     		try {
-				list = UserDB.displayInventory(UserDB.userEmail, availableOption, categoryOption);
+				list = UserDB.displayInventory(UserDB.userEmail, availableOption, categoryOption, "");
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -242,7 +242,7 @@ public class SellerInventory implements Initializable{
 		availableCol.setCellValueFactory(new PropertyValueFactory<Inventory, String>("Available"));
 		
 		try {
-			list = UserDB.displayInventory(UserDB.userEmail, availableOption, categoryOption);
+			list = UserDB.displayInventory(UserDB.userEmail, availableOption, categoryOption, "");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

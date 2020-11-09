@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextField;
@@ -76,8 +77,13 @@ public class Buyer implements Initializable{
 
     	Alert alert = new Alert(AlertType.CONFIRMATION);
     	alert.setTitle("FarmHub");
+    	alert.setHeaderText("");
     	alert.setContentText("Are you sure you want to sign out?");
     	
+    	DialogPane dialogPane = alert.getDialogPane();
+    	dialogPane.getStylesheets().add(getClass().getResource("../CSS files/myDialogs.css").toExternalForm());
+    	dialogPane.getStyleClass().add("myDialog");
+	        			
     	ButtonType yes = new ButtonType("Yes");
     	ButtonType no = new ButtonType("No");
     	alert.getButtonTypes().setAll(yes, no);
