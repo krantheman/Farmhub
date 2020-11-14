@@ -90,6 +90,7 @@ public class VendorsCatalog implements Initializable {
 	            setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 	            setGraphic(anchorpane);
 
+	            //For setting image for each cell
 	        	String imgfile;
 	        	if (item.getCategory().equals("Vegetable"))
 	        		imgfile = "/home/krantheman/eclipse-workspace/FX Presents/icons/vegetables.png";
@@ -109,10 +110,10 @@ public class VendorsCatalog implements Initializable {
 					e1.printStackTrace();
 				}
 
+				//Setting text to all fields
 	        	name.setText(item.getItem());
 	        	price.setText("Rs. " + item.getPrice());
 	        	quantity.setText(item.getQuantity());
-	        	
 	        	number = UserDB.getItemNumber(item.getItem(), item.getQuantity());
 	        	numberTF.setText(Integer.toString(number));
 	        	
@@ -124,7 +125,7 @@ public class VendorsCatalog implements Initializable {
 	        		if (check.equals(UserDB.vendorEmail) || check.equals("")) {
 	        			
 						if (number == 0) {
-							UserDB.addToCart(item.getItem(), item.getQuantity(), item.getPrice(), 1);
+							UserDB.addToCart(item.getItem(), item.getQuantity(), item.getPrice(), 1, item.getCategory());
 							numberTF.setText("1");
 						}
 

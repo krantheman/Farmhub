@@ -25,7 +25,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <PasswordField fx:id="password" layoutX="49.0" layoutY="115.0" promptText="Password" stylesheets="@../CSS%20files/Textfield.css" />
+            <PasswordField fx:id="password" layoutX="49.0" layoutY="115.0" onAction="#signinAction" promptText="Password" stylesheets="@../CSS%20files/Textfield.css" />
             <Label fx:id="error" layoutX="52.0" layoutY="220.0" prefWidth="152.0" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="10.0" />

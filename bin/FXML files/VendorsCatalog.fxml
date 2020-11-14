@@ -22,7 +22,7 @@
                   <Font name="System Bold" size="30.0" />
                </font>
             </Label>
-            <Label fx:id="address" alignment="TOP_LEFT" layoutX="115.0" layoutY="60.0" prefHeight="45.0" prefWidth="550.0" text="Vidyawhere, somewhere around the corner." textFill="WHITE" wrapText="true">
+            <Label fx:id="address" alignment="TOP_LEFT" layoutX="120.0" layoutY="60.0" prefHeight="45.0" prefWidth="545.0" text="Vidyawhere, somewhere around the corner." textFill="WHITE" wrapText="true">
                <font>
                   <Font size="12.0" />
                </font>

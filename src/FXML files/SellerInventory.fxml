@@ -8,6 +8,9 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -23,10 +26,10 @@
                   <Font name="System Bold" size="25.0" />
                </font>
             </Label>
-            <TextField fx:id="itemTF" layoutX="40.0" layoutY="80.0" prefWidth="200.0" promptText="Item" styleClass="text-field2" stylesheets="@../CSS%20files/Textfield.css" />
-            <TextField fx:id="quantityTF" layoutX="275.0" layoutY="80.0" prefWidth="200.0" promptText=" Weight / Quantity" styleClass="text-field2" stylesheets="@../CSS%20files/Textfield.css" />
-            <TextField fx:id="priceTF" layoutX="510.0" layoutY="80.0" prefWidth="200.0" promptText="Price (Rs.)" styleClass="text-field2" stylesheets="@../CSS%20files/Textfield.css" />
-            <Button fx:id="add" layoutX="980.0" layoutY="80.0" mnemonicParsing="false" onAction="#addAction" styleClass="GreenButton" stylesheets="@../CSS%20files/Button.css" text="+" textFill="WHITE">
+            <TextField fx:id="itemTF" layoutX="50.0" layoutY="80.0" prefWidth="200.0" promptText="Item" styleClass="text-field2" stylesheets="@../CSS%20files/Textfield.css" />
+            <TextField fx:id="quantityTF" layoutX="285.0" layoutY="80.0" prefWidth="200.0" promptText=" Weight / Quantity" styleClass="text-field2" stylesheets="@../CSS%20files/Textfield.css" />
+            <TextField fx:id="priceTF" layoutX="520.0" layoutY="80.0" prefWidth="200.0" promptText="Price (Rs.)" styleClass="text-field2" stylesheets="@../CSS%20files/Textfield.css" />
+            <Button fx:id="add" layoutX="990.0" layoutY="80.0" mnemonicParsing="false" onAction="#addAction" styleClass="GreenButton" stylesheets="@../CSS%20files/Button.css" text="+" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -34,17 +37,17 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Label layoutX="45.0" layoutY="130.0" text="Tip: Mention if the item is organic, exotic, etc. in the 'Item' label to facilitate searching, for your customer." textFill="WHITE">
+            <Label layoutX="55.0" layoutY="130.0" text="Tip: Mention if the item is organic, exotic, etc. in the 'Item' label to facilitate searching, for your customer." textFill="WHITE">
                <font>
                   <Font size="11.0" />
                </font>
             </Label>
-            <Label fx:id="error" layoutX="1040.0" layoutY="85.0" textFill="WHITE">
+            <Label fx:id="error" layoutX="1050.0" layoutY="85.0" textFill="WHITE">
                <font>
                   <Font size="10.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="categoryCB" layoutX="745.0" layoutY="79.0" prefWidth="200.0" style="-fx-background-color: #404040; -fx-border-color: white; -fx-border-radius: 2;" stylesheets="@../CSS%20files/Textfield.css">
+            <ChoiceBox fx:id="categoryCB" layoutX="755.0" layoutY="79.0" prefWidth="200.0" style="-fx-background-color: #404040; -fx-border-color: white; -fx-border-radius: 2;" stylesheets="@../CSS%20files/Textfield.css">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -61,11 +64,11 @@
                   <Font name="System Bold" size="25.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="availableFilter" layoutX="40.0" layoutY="80.0" prefWidth="150.0" style="-fx-background-color: #404040; -fx-border-color: white; -fx-border-radius: 2;" stylesheets="@../CSS%20files/Textfield.css">
+            <ChoiceBox fx:id="availableFilter" layoutX="520.0" layoutY="80.0" prefWidth="150.0" style="-fx-background-color: #404040; -fx-border-color: white; -fx-border-radius: 2;" stylesheets="@../CSS%20files/Textfield.css">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></ChoiceBox>
-            <TableView fx:id="listings" layoutX="40.0" layoutY="140.0" prefHeight="555.0" prefWidth="1000.0" stylesheets="@../CSS%20files/Tableview.css">
+            <TableView fx:id="listings" layoutX="50.0" layoutY="140.0" prefHeight="555.0" prefWidth="1000.0" stylesheets="@../CSS%20files/Tableview.css">
               <columns>
                 <TableColumn fx:id="itemCol" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Item" />
                 <TableColumn fx:id="quantityCol" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Weight / Quantity" />
@@ -74,21 +77,37 @@
                   <TableColumn fx:id="availableCol" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Available" />
               </columns>
             </TableView>
-            <ChoiceBox fx:id="categoryFilter" layoutX="220.0" layoutY="80.0" prefWidth="150.0" style="-fx-background-color: #404040; -fx-border-color: white; -fx-border-radius: 2;" stylesheets="@../CSS%20files/Textfield.css">
+            <ChoiceBox fx:id="categoryFilter" layoutX="700.0" layoutY="80.0" prefWidth="150.0" style="-fx-background-color: #404040; -fx-border-color: white; -fx-border-radius: 2;" stylesheets="@../CSS%20files/Textfield.css">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ChoiceBox>
-            <Button layoutX="400.0" layoutY="80.0" mnemonicParsing="false" onAction="#deleteAction" prefWidth="70.0" styleClass="GreenButton" stylesheets="@../CSS%20files/Button.css" text="Delete" textFill="WHITE">
+            <Button layoutX="880.0" layoutY="80.0" mnemonicParsing="false" onAction="#deleteAction" prefWidth="70.0" styleClass="GreenButton" stylesheets="@../CSS%20files/Button.css" text="Delete" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label fx:id="currentError" layoutX="500.0" layoutY="85.0" textFill="WHITE">
+            <Label fx:id="currentError" layoutX="1010.0" layoutY="85.0" textFill="WHITE">
                <font>
                   <Font size="10.0" />
                </font>
             </Label>
+            <TextField fx:id="searchTF" layoutX="50.0" layoutY="80.0" onAction="#searchAction" prefWidth="400.0" promptText="Search for items" />
+            <Button layoutX="455.0" layoutY="80.0" mnemonicParsing="false" onAction="#searchAction" styleClass="SideButton" stylesheets="@../CSS%20files/Button.css">
+               <graphic>
+                  <ImageView fitHeight="15.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../icons/search.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="1.0" />
+                     </effect>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
       </AnchorPane>
    </children>

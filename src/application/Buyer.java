@@ -46,6 +46,8 @@ public class Buyer implements Initializable{
     boolean chk = true;
     
     Fxmlloader loader = new Fxmlloader();
+    
+    static String search = "";
 
     @FXML
     void vendorsAction(ActionEvent event) throws Exception {
@@ -59,12 +61,13 @@ public class Buyer implements Initializable{
 
     @FXML
     void searchAction(ActionEvent event) throws Exception {
-    	setAction("", false);
+    	search = searchTF.getText();
+    	setAction("BuyerVendors.fxml", true);
     }
 
     @FXML
     void mycartAction(ActionEvent event) throws Exception {
-    	setAction("", false);
+    	setAction("BuyerCart.fxml", false);
     }
 
     @FXML

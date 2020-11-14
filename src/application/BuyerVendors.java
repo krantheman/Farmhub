@@ -119,8 +119,6 @@ public class BuyerVendors implements Initializable {
 	        }
 	    }
 	    
-	    int i = 1;
-
 	    @Override
 	    protected void updateItem(Vendors item, boolean empty) {
 
@@ -197,13 +195,19 @@ public class BuyerVendors implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 		try {
-			list = UserDB.displayVendors();
+			list = UserDB.displayVendors(Buyer.search);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		if (list.size() == 0)
-			novendors.setText("Sorry, no vendors available at the moment.");
-		
+		if (list.size() == 0) {
+
+			if (Buyer.search.equals(""))
+				novendors.setText("Sorry, no vendors available at the moment.");
+			else
+				novendors.setText("Sorry, no results found.");
+
+		}
+
 		listview.setItems(list);
 		listview.setCellFactory(new VendorsCellFactory());
 		listview.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue)-> {

@@ -97,6 +97,9 @@ public class SellerInventory implements Initializable{
 
     @FXML
     private TextField priceTF;
+    
+    @FXML
+    private TextField searchTF;
 
     @FXML
     private ChoiceBox<String> categoryCB;
@@ -156,8 +159,9 @@ public class SellerInventory implements Initializable{
     			UserDB.addInventory(itemText, quantityText, priceText, categoryText);
     			
     			//Updating table
-    			list = UserDB.displayInventory(UserDB.userEmail, availableOption, categoryOption, "");
+    			list = UserDB.displayInventory(UserDB.userEmail, availableOption, categoryOption, searchFilter);
     			listings.setItems(list);
+    			setPlaceholder();
 
     			//Resetting fields
     			error.setText(UserDB.error);
@@ -188,14 +192,29 @@ public class SellerInventory implements Initializable{
     		UserDB.itemDelete(inv.getItem(), inv.getQuantity());
 
     		//Updating table
-    		list = UserDB.displayInventory(UserDB.userEmail, availableOption, categoryOption, "");
+    		list = UserDB.displayInventory(UserDB.userEmail, availableOption, categoryOption, searchFilter);
     		listings.setItems(list);
+    		setPlaceholder();
 
     		//Resetting fields
     		currentError.setText("");
     		
     	}
 
+    }
+    
+    String searchFilter = "";
+
+    @FXML
+    void searchAction(ActionEvent event) {
+    	searchFilter = searchTF.getText();
+		try {
+			list = UserDB.displayInventory(UserDB.userEmail, availableOption, categoryOption, searchFilter);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		listings.setItems(list);
+		setPlaceholder();
     }
     
     ObservableList<Inventory> list;
@@ -209,11 +228,12 @@ public class SellerInventory implements Initializable{
     	availableFilter.getSelectionModel().selectedItemProperty().addListener( (v, oldval, newval) -> {
     		availableOption = newval;
     		try {
-				list = UserDB.displayInventory(UserDB.userEmail, availableOption, categoryOption, "");
+				list = UserDB.displayInventory(UserDB.userEmail, availableOption, categoryOption, searchFilter);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
     		listings.setItems(list);
+    		setPlaceholder();
     	});
 
 		//Search filter for items based on category
@@ -222,11 +242,12 @@ public class SellerInventory implements Initializable{
     	categoryFilter.getSelectionModel().selectedItemProperty().addListener( (v, oldval, newval) -> {
     		categoryOption = newval;
     		try {
-				list = UserDB.displayInventory(UserDB.userEmail, availableOption, categoryOption, "");
+				list = UserDB.displayInventory(UserDB.userEmail, availableOption, categoryOption, searchFilter);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
     		listings.setItems(list);
+    		setPlaceholder();
     	});
 
     	//Selecting item category
@@ -234,7 +255,6 @@ public class SellerInventory implements Initializable{
     	categoryCB.setValue("Vegetable");
 
     	//Listings tableview definition
-    	listings.setPlaceholder(new Label("You have no current listings in this category."));
 		itemCol.setCellValueFactory(new PropertyValueFactory<Inventory, String>("Item"));
 		quantityCol.setCellValueFactory(new PropertyValueFactory<Inventory, String>("Quantity"));
 		priceCol.setCellValueFactory(new PropertyValueFactory<Inventory, Double>("Price"));
@@ -242,7 +262,7 @@ public class SellerInventory implements Initializable{
 		availableCol.setCellValueFactory(new PropertyValueFactory<Inventory, String>("Available"));
 		
 		try {
-			list = UserDB.displayInventory(UserDB.userEmail, availableOption, categoryOption, "");
+			list = UserDB.displayInventory(UserDB.userEmail, availableOption, categoryOption, searchFilter);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -265,6 +285,15 @@ public class SellerInventory implements Initializable{
 	        }  
 	    }); 
 
+	}
+	
+	void setPlaceholder() {
+		
+    	if (availableFilter.getValue().equals("All") && categoryFilter.getValue().equals("All") && searchFilter.equals(""))
+    		listings.setPlaceholder(new Label("You have no current listings."));
+    	else
+    		listings.setPlaceholder(new Label("You have no current listings in this category."));
+		
 	}
 
 }

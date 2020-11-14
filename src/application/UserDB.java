@@ -4,6 +4,7 @@ import java.sql.*;
 
 import javax.mail.MessagingException;
 
+import application.BuyerCart.Cart;
 import application.BuyerVendors.Vendors;
 import application.SellerInventory.Inventory;
 import javafx.collections.FXCollections;
@@ -215,11 +216,11 @@ public class UserDB {
 			}
 
 			else if (available.equals("Unavailable")) {				
-				query = String.format("select * from inventory where seller = '%s' and available = '0';", email);
+				query = "select * from inventory where lower(item) like lower('%" + search + "%') and seller = '" + email + "' and available = '0';";
 			}
 
 			else {
-				query = String.format("select * from inventory where seller = '%s';", email);
+				query = "select * from inventory where lower(item) like lower('%" + search + "%') and seller = '" + email + "' ;";
 			}
 
 		}
@@ -231,11 +232,11 @@ public class UserDB {
 			}
 
 			else if (available.equals("Unavailable")) {				
-				query = String.format("select * from inventory where seller = '%s' and available = '0' and category = '%s';", email, category);
+				query = "select * from inventory where lower(item) like lower('%" + search + "%') and seller = '" + email + "' and available = '0' and category = '" + category + "';";
 			}
 
 			else {
-				query = String.format("select * from inventory where seller = '%s' and category = '%s';", email, category);
+				query = "select * from inventory where lower(item) like lower('%" + search + "%') and seller = '" + email + "' and category = '" + category + "';";
 			}
 
 		}
@@ -346,13 +347,13 @@ public class UserDB {
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 	
 	//For displaying available vendors(sellers) to buyers
-	static  ObservableList<Vendors> displayVendors() throws SQLException {
+	static  ObservableList<Vendors> displayVendors(String search) throws SQLException {
 		
 		//Connection
 		Connection connection = DriverManager.getConnection(url, username, password);
 			
 		//Query statement
-		String query = "select * from users where live = '1'";
+		String query = "select * from users where lower(name) like lower('%" + search + "%') and live = '1'";
 
 		PreparedStatement ps = connection.prepareStatement(query);
 		ResultSet rs = ps.executeQuery();
@@ -403,7 +404,7 @@ public class UserDB {
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 
 	//For adding items to the cart
-	static void addToCart(String item, String quantity, double price, int number) {
+	static void addToCart(String item, String quantity, double price, int number, String category) {
 		
 		try {
 			
@@ -411,7 +412,7 @@ public class UserDB {
 			Connection connection = DriverManager.getConnection(url, username, password);
 		
 			//Query statement
-			String query = String.format("insert into cart(buyer, seller, item, quantity, price, number) values('%s', '%s', '%s', '%s', '%.2f', '1');", userEmail, vendorEmail, item, quantity, price);
+			String query = String.format("insert into cart(buyer, seller, item, quantity, price, number, category) values('%s', '%s', '%s', '%s', '%.2f', '1', '%s');", userEmail, vendorEmail, item, quantity, price, category);
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(query);
 
@@ -508,7 +509,7 @@ public class UserDB {
 	
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 
-	//To check if cart contains items from other sellers
+	//To corresponding name for given email
 	static String getName (String email) {
 		
 		String name = "";
@@ -523,7 +524,7 @@ public class UserDB {
 			Statement statement = connection.createStatement();
 			ResultSet rs = statement.executeQuery(query);
 			
-			//Seeing if item exists in cart
+			//Fetching name
 			if(rs.next()) {	
 				name = rs.getString("name");
 			}
@@ -536,6 +537,88 @@ public class UserDB {
 		}
 		
 		return name;
+		
+	}
+	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+	
+	//For displaying cart to buyer
+	static  ObservableList<Cart> displayCart() throws SQLException {
+		
+		//Connection
+		Connection connection = DriverManager.getConnection(url, username, password);
+			
+		//Query statement
+		String query = "select * from cart where buyer = '" + userEmail + "';";
+
+		PreparedStatement ps = connection.prepareStatement(query);
+		ResultSet rs = ps.executeQuery();
+		
+		//List for storing data
+		ObservableList<Cart> list = FXCollections.observableArrayList();
+		while (rs.next()) {
+			vendorEmail = rs.getString("seller");
+			list.add(new Cart(rs.getString("item"), rs.getString("quantity"), rs.getDouble("price"), rs.getInt("number"), rs.getString("category")));
+		}
+		
+		return list;
+			
+	}
+	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+
+	//For getting grand total of cart
+	static String getGrandTotal() {
+		
+		String total = "";
+		
+		try {
+			
+			//Connection
+			Connection connection = DriverManager.getConnection(url, username, password);
+		
+			//Query statement
+			String query = String.format("select sum(price * number) as total from cart where buyer = '%s';", userEmail);
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(query);
+			
+			//Fetching total
+			while(rs.next()) {	
+				total = rs.getString("total");
+			}
+
+			//Closing connection
+			connection.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return total;
+		
+	}
+	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+
+	//For clearing the cart
+	static void clearCart () {
+		
+		try {
+			
+			//Connection
+			Connection connection = DriverManager.getConnection(url, username, password);
+		
+			//Query statement
+			String query = String.format("delete from cart where buyer = '%s' ;", userEmail);
+			Statement statement = connection.createStatement();
+			statement.executeUpdate(query);
+
+			//Closing connection
+			connection.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	

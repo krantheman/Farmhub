@@ -14,7 +14,7 @@
             <Font name="System Bold" size="40.0" />
          </font>
       </Label>
-      <Label fx:id="address" alignment="TOP_LEFT" layoutX="270.0" layoutY="95.0" maxHeight="63.0" maxWidth="630.0" prefHeight="63.0" prefWidth="630.0" text="East of Trodden, 910 019." textFill="WHITE" wrapText="true">
+      <Label fx:id="address" alignment="TOP_LEFT" layoutX="280.0" layoutY="95.0" prefHeight="63.0" prefWidth="620.0" text="East of Trodden, 910 019." textFill="WHITE" wrapText="true">
          <font>
             <Font size="18.0" />
          </font>
@@ -34,7 +34,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="email" layoutX="270.0" layoutY="175.0" text="Contact: abc.xyz@gmail.com" textFill="WHITE">
+      <Label fx:id="email" layoutX="280.0" layoutY="175.0" text="Contact: abc.xyz@gmail.com" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
