@@ -9,25 +9,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="anchorpane" prefHeight="115.0" prefWidth="1070.0" style="-fx-background-color: #404040; -fx-border-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anchorpane" prefHeight="105.0" prefWidth="1070.0" style="-fx-background-color: #404040; -fx-border-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="name" layoutX="180.0" layoutY="20.0" prefHeight="40.0" prefWidth="810.0" styleClass="outline" stylesheets="@../CSS%20files/Textfield.css" text="Charles Cabbage" textFill="WHITE">
+      <Label fx:id="name" layoutX="180.0" layoutY="15.0" prefHeight="40.0" prefWidth="810.0" styleClass="outline" stylesheets="@../CSS%20files/Textfield.css" text="Charles Cabbage" textFill="WHITE">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <ImageView fx:id="imageview" fitHeight="75.0" fitWidth="100.0" layoutX="70.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageview" fitHeight="75.0" fitWidth="100.0" layoutX="70.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../icons/plant.png" />
          </image>
       </ImageView>
-      <Label fx:id="quantity" layoutX="190.0" layoutY="65.0" text="500g" textFill="WHITE">
+      <Label fx:id="quantity" layoutX="190.0" layoutY="60.0" text="500g" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Button fx:id="minus" layoutX="800.0" layoutY="65.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="32.0" styleClass="GreenButton" stylesheets="@../CSS%20files/Button.css" text="-">
+      <Button fx:id="minus" layoutX="800.0" layoutY="60.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="32.0" styleClass="GreenButton" stylesheets="@../CSS%20files/Button.css" text="-">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -35,12 +34,12 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextField fx:id="numberTF" alignment="CENTER" editable="false" layoutX="838.0" layoutY="65.0" prefHeight="28.0" prefWidth="35.0" styleClass="text-field2" stylesheets="@../CSS%20files/Textfield.css" text="0">
+      <TextField fx:id="numberTF" alignment="CENTER" editable="false" layoutX="838.0" layoutY="60.0" prefHeight="28.0" prefWidth="35.0" styleClass="text-field2" stylesheets="@../CSS%20files/Textfield.css" text="0">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </TextField>
-      <Button fx:id="plus" layoutX="879.0" layoutY="65.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="32.0" styleClass="GreenButton" stylesheets="@../CSS%20files/Button.css" text="+">
+      <Button fx:id="plus" layoutX="879.0" layoutY="60.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="32.0" styleClass="GreenButton" stylesheets="@../CSS%20files/Button.css" text="+">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -48,7 +47,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label fx:id="price" alignment="TOP_LEFT" layoutX="930.0" layoutY="70.0" prefHeight="8.0" text="Rs. 60" textFill="WHITE" wrapText="true">
+      <Label fx:id="price" alignment="TOP_LEFT" layoutX="930.0" layoutY="65.0" prefHeight="8.0" text="Rs. 60" textFill="WHITE" wrapText="true">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>

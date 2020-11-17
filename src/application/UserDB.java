@@ -568,9 +568,9 @@ public class UserDB {
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 
 	//For getting grand total of cart
-	static String getGrandTotal() {
+	static double getGrandTotal() {
 		
-		String total = "";
+		double total = 0;
 		
 		try {
 			
@@ -584,7 +584,7 @@ public class UserDB {
 			
 			//Fetching total
 			while(rs.next()) {	
-				total = rs.getString("total");
+				total = rs.getDouble("total");
 			}
 
 			//Closing connection
@@ -601,7 +601,7 @@ public class UserDB {
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 
 	//For clearing the cart
-	static void clearCart () {
+	static void clearCart() {
 		
 		try {
 			
@@ -612,6 +612,35 @@ public class UserDB {
 			String query = String.format("delete from cart where buyer = '%s' ;", userEmail);
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(query);
+
+			//Closing connection
+			connection.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+
+	//To get vendor details
+	static void getVendorDetails() {
+		
+		try {
+			
+			//Connection
+			Connection connection = DriverManager.getConnection(url, username, password);
+		
+			//Query statement
+			String query = "select * from users where email = '" + vendorEmail + "';";
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(query);
+
+			while (rs.next()) {
+				vendorName = rs.getString("name");
+				vendorAddress = rs.getString("address");
+			}
 
 			//Closing connection
 			connection.close();

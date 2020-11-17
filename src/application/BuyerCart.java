@@ -206,8 +206,9 @@ public class BuyerCart implements Initializable {
 
 	        }
 	        
-	        grandtotal.setText("Grand Total: Rs. " + UserDB.getGrandTotal());
-		
+	        itemtotal.setText("Item Total: Rs. " + UserDB.getGrandTotal());
+	        grandtotal.setText("Grand Total: Rs. " + (UserDB.getGrandTotal()+40));
+	        
 	    }
 	    
 	}
@@ -225,9 +226,21 @@ public class BuyerCart implements Initializable {
     
     @FXML
     private ListView<Cart> listview;
+    
+    @FXML
+    private Label itemtotal;
 
     @FXML
     private Label grandtotal; 
+
+    @FXML
+    private Label vendorname;
+
+    @FXML
+    private Label vendoraddress;
+
+    @FXML
+    private Label vendoremail;
 
     ObservableList<Cart> list;
 
@@ -272,9 +285,15 @@ public class BuyerCart implements Initializable {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		emptyCart();
+
 		listview.setItems(list);
 		listview.setCellFactory(new CartCellFactory());
-		emptyCart();
+		
+		UserDB.getVendorDetails();
+		vendorname.setText(UserDB.vendorName);
+		vendoraddress.setText(UserDB.vendorAddress);
+		vendoremail.setText("Contact: " + UserDB.vendorEmail);
 		
 	}
 	

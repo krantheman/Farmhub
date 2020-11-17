@@ -15,7 +15,7 @@
             <Insets />
          </opaqueInsets>
          <children>
-            <Button layoutX="1065.0" layoutY="820.0" mnemonicParsing="false" onAction="#placeorderAction" prefHeight="30.0" prefWidth="125.0" styleClass="GreenButton" stylesheets="@../CSS%20files/Button.css" text="Place order">
+            <Button layoutX="1055.0" layoutY="820.0" mnemonicParsing="false" onAction="#placeorderAction" prefHeight="30.0" prefWidth="125.0" styleClass="GreenButton" stylesheets="@../CSS%20files/Button.css" text="Place order">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -23,7 +23,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button layoutX="910.0" layoutY="820.0" mnemonicParsing="false" onAction="#clearcartAction" prefHeight="30.0" prefWidth="125.0" styleClass="GreenButton" stylesheets="@../CSS%20files/Button.css" text="Clear cart">
+            <Button layoutX="900.0" layoutY="820.0" mnemonicParsing="false" onAction="#clearcartAction" prefHeight="30.0" prefWidth="125.0" styleClass="GreenButton" stylesheets="@../CSS%20files/Button.css" text="Clear cart">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -31,10 +31,35 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <ListView fx:id="listview" layoutX="100.0" layoutY="50.0" prefHeight="730.0" prefWidth="1100.0" stylesheets="@../CSS%20files/Listview.css" />
-            <Label fx:id="grandtotal" layoutX="100.0" layoutY="823.0" textFill="WHITE">
+            <ListView fx:id="listview" layoutX="100.0" layoutY="160.0" prefHeight="570.0" prefWidth="1100.0" stylesheets="@../CSS%20files/Listview.css" />
+            <Label fx:id="grandtotal" layoutX="110.0" layoutY="820.0" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="110.0" layoutY="790.0" prefHeight="20.0" text="Delivery Charges: Rs. 40.0" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="itemtotal" layoutX="110.0" layoutY="760.0" prefHeight="20.0" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="vendorname" layoutX="100.0" layoutY="50.0" prefHeight="50.0" styleClass="outline" stylesheets="@../CSS%20files/Textfield.css" text="Gang" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="40.0" />
+               </font>
+            </Label>
+            <Label fx:id="vendoraddress" layoutX="100.0" layoutY="110.0" prefHeight="20.0" prefWidth="700.0" text="East, West, North, South." textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="vendoremail" alignment="CENTER_RIGHT" layoutX="850.0" layoutY="110.0" prefHeight="20.0" prefWidth="350.0" text="Contact: akash.tom@gmail.com" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
                </font>
             </Label>
          </children>
