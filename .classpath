@@ -19,5 +19,10 @@
 	<classpathentry kind="lib" path="/usr/share/java/mysql-connector-java-8.0.21.jar"/>
 	<classpathentry kind="lib" path="/usr/share/java/javax.mail.jar"/>
 	<classpathentry kind="lib" path="/usr/share/java/activation.jar"/>
+	<classpathentry kind="lib" path="/usr/share/java/commons-lang3-3.11-bin/commons-lang3-3.11/commons-lang3-3.11.jar"/>
+	<classpathentry kind="lib" path="/usr/share/java/commons-lang3-3.11-bin/commons-lang3-3.11/commons-lang3-3.11-javadoc.jar"/>
+	<classpathentry kind="lib" path="/usr/share/java/commons-lang3-3.11-bin/commons-lang3-3.11/commons-lang3-3.11-sources.jar"/>
+	<classpathentry kind="lib" path="/usr/share/java/commons-lang3-3.11-bin/commons-lang3-3.11/commons-lang3-3.11-tests.jar"/>
+	<classpathentry kind="lib" path="/usr/share/java/commons-lang3-3.11-bin/commons-lang3-3.11/commons-lang3-3.11-test-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

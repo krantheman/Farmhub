@@ -44,7 +44,7 @@ public class UserDB {
 			Connection connection = DriverManager.getConnection(url, username, password);
 		
 			//Query statement
-			String query = String.format("insert into users(type, name, email, password, address) values('%s', '%s', '%s', '%s', '%s');", interest, name, email, pass, address);
+			String query = String.format("insert into users(type, name, email, password, address) values('%s', '%s', '%s', '%s', '%s');", interest, name.replaceAll("'", "\\\\'"), email, pass.replaceAll("'", "\\\\'"), address.replaceAll("'", "\\\\'"));
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(query);
 
@@ -84,7 +84,7 @@ public class UserDB {
 			Connection connection = DriverManager.getConnection(url, username, password);
 		
 			//Query statement
-			String query = String.format("select * from users where email = '%s' and password = '%s';", email, pass);
+			String query = String.format("select * from users where email = '%s' and password = '%s';", email, pass.replaceAll("'", "\\\\'"));
 			Statement statement = connection.createStatement();
 			ResultSet rs = statement.executeQuery(query);
 			
@@ -124,7 +124,7 @@ public class UserDB {
 			Connection connection = DriverManager.getConnection(url, username, password);
 		
 			//Query statement
-			String query = String.format("update users set name = '%s', address = '%s' where email = '%s';", name, address, userEmail);
+			String query = String.format("update users set name = '%s', address = '%s' where email = '%s';", name.replaceAll("'", "\\\\'"), address.replaceAll("'", "\\\\'"), userEmail);
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(query);
 
@@ -152,7 +152,7 @@ public class UserDB {
 			Connection connection = DriverManager.getConnection(url, username, password);
 		
 			//Query statement
-			String query = String.format("update users set password = '%s' where email = '%s';", pass, userEmail);
+			String query = String.format("update users set password = '%s' where email = '%s';", pass.replaceAll("'", "\\\\'"), userEmail);
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(query);
 
@@ -212,15 +212,15 @@ public class UserDB {
 		if (category.equals("All")) {
 
 			if (available.equals("Available")) {				
-				query = "select * from inventory where lower(item) like lower('%" + search + "%') and seller = '" + email + "' and available = '1';";
+				query = "select * from inventory where lower(item) like lower('%" + search.replaceAll("'", "\\\\'") + "%') and seller = '" + email + "' and available = '1';";
 			}
 
 			else if (available.equals("Unavailable")) {				
-				query = "select * from inventory where lower(item) like lower('%" + search + "%') and seller = '" + email + "' and available = '0';";
+				query = "select * from inventory where lower(item) like lower('%" + search.replaceAll("'", "\\\\'") + "%') and seller = '" + email + "' and available = '0';";
 			}
 
 			else {
-				query = "select * from inventory where lower(item) like lower('%" + search + "%') and seller = '" + email + "' ;";
+				query = "select * from inventory where lower(item) like lower('%" + search.replaceAll("'", "\\\\'") + "%') and seller = '" + email + "' ;";
 			}
 
 		}
@@ -228,15 +228,15 @@ public class UserDB {
 		else {
 
 			if (available.equals("Available")) {				
-				query = "select * from inventory where lower(item) like lower('%" + search + "%') and seller = '" + email + "' and available = '1' and category = '" + category + "';";
+				query = "select * from inventory where lower(item) like lower('%" + search.replaceAll("'", "\\\\'") + "%') and seller = '" + email + "' and available = '1' and category = '" + category + "';";
 			}
 
 			else if (available.equals("Unavailable")) {				
-				query = "select * from inventory where lower(item) like lower('%" + search + "%') and seller = '" + email + "' and available = '0' and category = '" + category + "';";
+				query = "select * from inventory where lower(item) like lower('%" + search.replaceAll("'", "\\\\'") + "%') and seller = '" + email + "' and available = '0' and category = '" + category + "';";
 			}
 
 			else {
-				query = "select * from inventory where lower(item) like lower('%" + search + "%') and seller = '" + email + "' and category = '" + category + "';";
+				query = "select * from inventory where lower(item) like lower('%" + search.replaceAll("'", "\\\\'") + "%') and seller = '" + email + "' and category = '" + category + "';";
 			}
 
 		}
@@ -258,15 +258,16 @@ public class UserDB {
 	
 	//For seller to add items to inventory
 	static void addInventory(String item, String quantity, double price, String category) {
-		
+
 		error = "";
+
 		try {
 			
 			//Connection
 			Connection connection = DriverManager.getConnection(url, username, password);
 		
 			//Query statement
-			String query = String.format("select * from inventory where item = '%s' and quantity = '%s';", item, quantity);
+			String query = String.format("select * from inventory where item = '%s' and quantity = '%s';", item.replaceAll("'", "\\\\'"), quantity.replaceAll("'", "\\\\'"));
 			Statement statement = connection.createStatement();
 			ResultSet rs = statement.executeQuery(query);
 			
@@ -277,7 +278,7 @@ public class UserDB {
 			else {
 
 				//Query statement
-				query = String.format("insert into inventory(seller, item, quantity, price, category, available) values('%s', '%s', '%s', '%.2f', '%s', '1');",userEmail, item, quantity, price, category);
+				query = String.format("insert into inventory(seller, item, quantity, price, category, available) values('%s', '%s', '%s', '%.2f', '%s', '1');",userEmail, item.replaceAll("'", "\\\\'"), quantity.replaceAll("'", "\\\\'"), price, category);
 				statement.executeUpdate(query);
 			}
 
@@ -303,10 +304,10 @@ public class UserDB {
 			//Query statement
 			String query;
 			if (available) {	
-				query = String.format("update inventory set available = '1' where seller = '%s' and item = '%s' and quantity = '%s';", userEmail, item, quantity);
+				query = String.format("update inventory set available = '1' where seller = '%s' and item = '%s' and quantity = '%s';", userEmail, item.replaceAll("'", "\\\\'"), quantity.replaceAll("'", "\\\\'"));
 			}
 			else {				
-				query = String.format("update inventory set available = '0' where seller = '%s' and item = '%s' and quantity = '%s';", userEmail, item, quantity);
+				query = String.format("update inventory set available = '0' where seller = '%s' and item = '%s' and quantity = '%s';", userEmail, item.replaceAll("'", "\\\\'"), quantity.replaceAll("'", "\\\\'"));
 			}
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(query);
@@ -331,7 +332,7 @@ public class UserDB {
 			Connection connection = DriverManager.getConnection(url, username, password);
 		
 			//Query statement
-			String query = String.format("delete from inventory where seller = '%s' and item = '%s' and quantity = '%s';", userEmail, item, quantity);
+			String query = String.format("delete from inventory where seller = '%s' and item = '%s' and quantity = '%s';", userEmail, item.replaceAll("'", "\\\\'"), quantity.replaceAll("'", "\\\\'"));
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(query);
 
@@ -353,7 +354,7 @@ public class UserDB {
 		Connection connection = DriverManager.getConnection(url, username, password);
 			
 		//Query statement
-		String query = "select * from users where lower(name) like lower('%" + search + "%') and live = '1'";
+		String query = "select * from users where lower(name) like lower('%" + search.replaceAll("'", "\\\\'") + "%') and live = '1'";
 
 		PreparedStatement ps = connection.prepareStatement(query);
 		ResultSet rs = ps.executeQuery();
@@ -381,7 +382,7 @@ public class UserDB {
 			Connection connection = DriverManager.getConnection(url, username, password);
 		
 			//Query statement
-			String query = String.format("select * from cart where buyer = '%s' and seller = '%s' and item = '%s' and quantity = '%s';", userEmail, vendorEmail, item, quantity);
+			String query = String.format("select * from cart where buyer = '%s' and seller = '%s' and item = '%s' and quantity = '%s';", userEmail, vendorEmail, item.replaceAll("'", "\\\\'"), quantity.replaceAll("'", "\\\\'"));
 			Statement statement = connection.createStatement();
 			ResultSet rs = statement.executeQuery(query);
 			
@@ -412,7 +413,7 @@ public class UserDB {
 			Connection connection = DriverManager.getConnection(url, username, password);
 		
 			//Query statement
-			String query = String.format("insert into cart(buyer, seller, item, quantity, price, number, category) values('%s', '%s', '%s', '%s', '%.2f', '1', '%s');", userEmail, vendorEmail, item, quantity, price, category);
+			String query = String.format("insert into cart(buyer, seller, item, quantity, price, number, category) values('%s', '%s', '%s', '%s', '%.2f', '1', '%s');", userEmail, vendorEmail, item.replaceAll("'", "\\\\'"), quantity.replaceAll("'", "\\\\'"), price, category);
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(query);
 
@@ -437,7 +438,7 @@ public class UserDB {
 			Connection connection = DriverManager.getConnection(url, username, password);
 		
 			//Query statement
-			String query = String.format("update cart set number = '%d' where buyer = '%s' and seller = '%s' and item = '%s' and quantity = '%s';", number, userEmail, vendorEmail, item, quantity);
+			String query = String.format("update cart set number = '%d' where buyer = '%s' and seller = '%s' and item = '%s' and quantity = '%s';", number, userEmail, vendorEmail, item.replaceAll("'", "\\\\'"), quantity.replaceAll("'", "\\\\'"));
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(query);
 
@@ -461,7 +462,7 @@ public class UserDB {
 			Connection connection = DriverManager.getConnection(url, username, password);
 		
 			//Query statement
-			String query = String.format("delete from cart where buyer = '%s' and seller = '%s' and item = '%s' and quantity = '%s';", userEmail, vendorEmail, item, quantity);
+			String query = String.format("delete from cart where buyer = '%s' and seller = '%s' and item = '%s' and quantity = '%s';", userEmail, vendorEmail, item.replaceAll("'", "\\\\'"), quantity.replaceAll("'", "\\\\'"));
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(query);
 

@@ -273,7 +273,30 @@ public class BuyerCart implements Initializable {
     }
 
     @FXML
-    void placeorderAction(ActionEvent event) {
+    void placeorderAction(ActionEvent event) throws SQLException {
+
+    	Alert alert = new Alert(AlertType.CONFIRMATION);
+    	alert.setTitle("FarmHub");
+    	alert.setHeaderText("");
+    	alert.setContentText("Are you sure you want to place your order?");
+    	
+    	DialogPane dialogPane = alert.getDialogPane();
+    	dialogPane.getStylesheets().add(getClass().getResource("../CSS files/myDialogs.css").toExternalForm());
+    	dialogPane.getStyleClass().add("myDialog");
+	        			
+    	ButtonType yes = new ButtonType("Yes");
+    	ButtonType no = new ButtonType("No");
+    	alert.getButtonTypes().setAll(yes, no);
+    	Optional<ButtonType> result = alert.showAndWait();
+    	
+    	if (result.get() == yes) {
+    		UserDB.clearCart();
+    		list = UserDB.displayCart();
+    		emptyCart();
+    	}
+
+    	else 
+    		alert.close();
 
     }
 
