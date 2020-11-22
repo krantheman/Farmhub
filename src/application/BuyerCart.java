@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Optional;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import javafx.collections.ObservableList;
@@ -290,9 +291,9 @@ public class BuyerCart implements Initializable {
     	Optional<ButtonType> result = alert.showAndWait();
     	
     	if (result.get() == yes) {
+    		getOrderno();
+    		UserDB.placeOrder(orderno);
     		UserDB.clearCart();
-    		list = UserDB.displayCart();
-    		emptyCart();
     	}
 
     	else 
@@ -333,6 +334,18 @@ public class BuyerCart implements Initializable {
 			
 		}
 		
+	}
+	
+	int orderno = 0;
+	
+	void getOrderno() {
+		
+		Random rnd = new Random();
+		orderno = rnd.nextInt(1000000);
+		
+		if (UserDB.checkOrderNo(orderno) || orderno < 100000)
+			getOrderno();
+
 	}
 
 }

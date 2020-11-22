@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorpane" maxHeight="230.0" maxWidth="1200.0" prefHeight="230.0" prefWidth="1200.0" style="-fx-background-color: #404040;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="name" layoutX="270.0" layoutY="30.0" styleClass="outline" stylesheets="@../CSS%20files/Textfield.css" text="Dolly Tom" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="40.0" />
+         </font>
+      </Label>
+      <Label fx:id="address" alignment="TOP_LEFT" layoutX="280.0" layoutY="95.0" prefHeight="63.0" prefWidth="600.0" text="East of Trodden, 910 019." textFill="WHITE" wrapText="true">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="orderno" layoutX="280.0" layoutY="175.0" text="Order No.: 123456" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor></Label>
+      <ImageView fitHeight="165.0" layoutX="75.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../icons/grocery-cart.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="datetime" alignment="CENTER_RIGHT" layoutX="800.0" layoutY="175.0" prefWidth="300.0" text="November 21, 2020 at 02:23 AM" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </Label>
+      <ImageView fx:id="imageview" fitHeight="26.0" fitWidth="26.0" layoutX="995.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../icons/Circle%20(B).png" />
+         </image>
+      </ImageView>
+      <Label fx:id="status" layoutX="1025.0" layoutY="53.0" text="Pending" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </Label>
+   </children>
+   <cursor>
+      <Cursor fx:constant="HAND" />
+   </cursor>
+</AnchorPane>

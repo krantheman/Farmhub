@@ -7,6 +7,7 @@ import javax.mail.MessagingException;
 import application.BuyerCart.Cart;
 import application.BuyerVendors.Vendors;
 import application.SellerInventory.Inventory;
+import application.SellerOrders.OrderList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -29,6 +30,9 @@ public class UserDB {
 	static String vendorStars = "";
 	static String vendorReviews = "";
 	
+	static String customerName;
+	static String customerAddress;
+
 	static String error = "";
 	
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
@@ -182,9 +186,11 @@ public class UserDB {
 			String query;
 			if (live) {	
 				query = String.format("update users set live = '1' where email = '%s';", userEmail);
+				userLive = 1;
 			}
 			else {				
 				query = String.format("update users set live = '0' where email = '%s';", userEmail);
+				userLive = 0;
 			}
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(query);
@@ -654,6 +660,124 @@ public class UserDB {
 	
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 
+	//For placing order
+	static void placeOrder(int orderno) {
+		
+		try {
+			
+			//Connection
+			Connection connection = DriverManager.getConnection(url, username, password);
+		
+			//Query statement
+			String query = "INSERT INTO orders (orderno, buyer, seller, item, quantity, price, num, orderdate, ordertime, stat) select '" + orderno + "', buyer, seller, item, quantity, price, number, curdate(), curtime(), 'Pending' from `cart` where buyer = '" + userEmail + "';";
+			Statement statement = connection.createStatement();
+			statement.executeUpdate(query);
+
+			//Closing connection
+			connection.close();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+	
+	//For checking if an order no. has already been used
+	static boolean checkOrderNo(int testno) {
+		
+		boolean chk = false;
+
+		try {
+			
+			//Connection
+			Connection connection = DriverManager.getConnection(url, username, password);
+		
+			//Query statement
+			String query = "select * from orders where orderno = '" + testno + "';";
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(query);
+			
+			//Signing in
+			if(rs.next()) {	
+				chk = true;
+			}
+
+			//Closing connection
+			connection.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return chk;
+
+	}
+	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+	
+	//For displaying list of current orders
+	static  ObservableList<OrderList> displayOrders(int option) throws SQLException {
+		
+		//Connection
+		Connection connection = DriverManager.getConnection(url, username, password);
+			
+		//Query statement
+		String query="";
+
+		switch(option) {
+
+		case 1:	query = String.format("select distinct orderno, buyer, seller, orderdate, ordertime, stat from orders where %s = '%s' and stat = 'Pending' or stat = 'Ongoing';", userType.toLowerCase(), userEmail);
+		break;
+
+		}
+			
+		PreparedStatement ps = connection.prepareStatement(query);
+		ResultSet rs = ps.executeQuery();
+		
+		//List for storing data
+		ObservableList<OrderList> list = FXCollections.observableArrayList();
+		while (rs.next()) {
+			list.add(new OrderList(rs.getString("orderno"), rs.getString("buyer"), rs.getString("seller"), rs.getString("stat"), rs.getString("orderdate"), rs.getString("ordertime")));
+		}
+		
+		return list;
+			
+	}
+	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+
+	//For fetching customer details
+	static void getCustomer (String email) {
+
+		try {
+			
+			//Connection
+			Connection connection = DriverManager.getConnection(url, username, password);
+		
+			//Query statement
+			String query = String.format("select * from users where email = '%s';", email);
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(query);
+			
+			//Fetching name
+			if(rs.next()) {	
+				customerName = rs.getString("name");
+				customerAddress = rs.getString("address");
+			}
+
+			//Closing connection
+			connection.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 	//For signing out 
 	static void signOut() {
 		

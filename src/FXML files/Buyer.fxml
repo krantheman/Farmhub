@@ -84,6 +84,14 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ToggleButton>
+            <ToggleButton layoutY="94.0" mnemonicParsing="false" onAction="#historyAction" prefHeight="40.0" prefWidth="150.0" styleClass="SideButton" stylesheets="@../CSS%20files/Button.css" text="History" textFill="WHITE" toggleGroup="$sidebarTG">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ToggleButton>
          </children></AnchorPane>
       <BorderPane fx:id="mainpane" layoutX="150.0" layoutY="40.0">
          <center>

@@ -49,7 +49,7 @@ public class Seller implements Initializable {
     
     @FXML
     void ordersAction(ActionEvent event) throws Exception {
-    	setAction("", true);
+    	setAction("SellerOrders.fxml", true);
     }
 
     @FXML
@@ -59,11 +59,6 @@ public class Seller implements Initializable {
 
     @FXML
     void historyAction(ActionEvent event) throws Exception {
-    	setAction("", true);
-    }
-
-    @FXML
-    void statisticsAction(ActionEvent event) throws Exception {
     	setAction("", true);
     }
 
@@ -125,6 +120,12 @@ public class Seller implements Initializable {
 		if (UserDB.userLive == 1)
 			live.setSelected(true);
 		
+		try {
+			setAction("SellerOrders.fxml", true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		//Preventing side bar toggle group from not having a toggle selected
 		sidebarTG.selectedToggleProperty().addListener((obsVal, oldVal, newVal) -> {
 		    if (newVal == null && chk == true)

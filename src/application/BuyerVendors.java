@@ -199,6 +199,7 @@ public class BuyerVendors implements Initializable {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
 		if (list.size() == 0) {
 
 			if (Buyer.search.equals(""))

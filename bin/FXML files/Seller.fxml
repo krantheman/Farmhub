@@ -16,9 +16,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Seller">
    <children>
-      <AnchorPane prefHeight="35.0" prefWidth="1920.0" style="-fx-background-color: #5abf8d;">
+      <AnchorPane prefHeight="40.0" prefWidth="1920.0" style="-fx-background-color: #5abf8d;">
          <children>
-            <MenuBar fx:id="account" layoutX="1814.0" prefHeight="35.0" prefWidth="106.0" style="-fx-background-color: #5abf8d;" stylesheets="@../CSS%20files/Menubar.css">
+            <MenuBar fx:id="account" layoutX="1814.0" layoutY="4.0" prefHeight="36.0" prefWidth="106.0" style="-fx-background-color: #5abf8d;" stylesheets="@../CSS%20files/Menubar.css">
               <menus>
                 <Menu mnemonicParsing="false" text="Account">
                   <items>
@@ -36,18 +36,18 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </MenuBar>
-            <Label fx:id="welcome" alignment="BOTTOM_LEFT" prefHeight="35.0" prefWidth="500.0" text="Welcome, User" textFill="#2e2e2e">
+            <Label fx:id="welcome" alignment="BOTTOM_LEFT" prefHeight="40.0" prefWidth="500.0" text="Welcome, User" textFill="#2e2e2e">
                <font>
-                  <Font name="System Italic" size="17.0" />
+                  <Font name="System Italic" size="19.0" />
                </font>
                <padding>
                   <Insets bottom="6.0" left="20.0" top="6.0" />
                </padding>
             </Label>
          </children></AnchorPane>
-      <AnchorPane layoutY="35.0" prefHeight="1045.0" prefWidth="150.0" style="-fx-background-color: #404040;">
+      <AnchorPane layoutY="40.0" prefHeight="1045.0" prefWidth="150.0" style="-fx-background-color: #404040;">
          <children>
-            <ToggleButton layoutY="14.0" mnemonicParsing="false" onAction="#ordersAction" prefHeight="40.0" prefWidth="150.0" styleClass="SideButton" stylesheets="@../CSS%20files/Button.css" text="Orders" textFill="WHITE">
+            <ToggleButton layoutY="14.0" mnemonicParsing="false" onAction="#ordersAction" prefHeight="40.0" prefWidth="150.0" selected="true" styleClass="SideButton" stylesheets="@../CSS%20files/Button.css" text="Orders" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -74,16 +74,8 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ToggleButton>
-            <ToggleButton layoutY="134.0" mnemonicParsing="false" onAction="#statisticsAction" prefHeight="40.0" prefWidth="150.0" styleClass="SideButton" stylesheets="@../CSS%20files/Button.css" text="Statistics" textFill="WHITE" toggleGroup="$sidebarTG">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ToggleButton>
          </children></AnchorPane>
-      <BorderPane fx:id="mainpane" layoutX="150.0" layoutY="35.0">
+      <BorderPane fx:id="mainpane" layoutX="150.0" layoutY="40.0">
          <center>
             <AnchorPane prefHeight="1045.0" prefWidth="1770.0" />
          </center>
