@@ -778,6 +778,89 @@ public class UserDB {
 	}
 	
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+	
+	//For displaying order to seller
+	static  ObservableList<Cart> displayCustomerOrder(String orderno) throws SQLException {
+		
+		//Connection
+		Connection connection = DriverManager.getConnection(url, username, password);
+			
+		//Query statement
+		String query = "select * from orders where orderno = '" + orderno + "';";
+
+		PreparedStatement ps = connection.prepareStatement(query);
+		ResultSet rs = ps.executeQuery();
+		
+		//List for storing data
+		ObservableList<Cart> list = FXCollections.observableArrayList();
+		while (rs.next()) {
+			vendorEmail = rs.getString("seller");
+			list.add(new Cart(rs.getString("item"), rs.getString("quantity"), rs.getDouble("price"), rs.getInt("num"), rs.getString("stat")));
+		}
+		
+		return list;
+			
+	}
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+	
+	//For updating order details
+	static void updateOrder(String status, String orderno) {
+		
+		try {
+			
+			//Connection
+			Connection connection = DriverManager.getConnection(url, username, password);
+		
+			//Query statement
+			String query = String.format("update orders set stat = '%s' where orderno = '%s';", status, orderno);
+			Statement statement = connection.createStatement();
+			statement.executeUpdate(query);
+
+			//Closing connection
+			connection.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+
+	//For getting grand total of order
+	static double getGrandTotal2(String orderno) {
+		
+		double total = 0;
+		
+		try {
+			
+			//Connection
+			Connection connection = DriverManager.getConnection(url, username, password);
+		
+			//Query statement
+			String query = String.format("select sum(price * num) as total from orders where orderno = '%s';", orderno);
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(query);
+			
+			//Fetching total
+			while(rs.next()) {	
+				total = rs.getDouble("total");
+			}
+
+			//Closing connection
+			connection.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return total;
+		
+	}
+	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+
 	//For signing out 
 	static void signOut() {
 		

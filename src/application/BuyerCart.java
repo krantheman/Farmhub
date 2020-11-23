@@ -132,6 +132,7 @@ public class BuyerCart implements Initializable {
 	            throw new RuntimeException(e);
 	        }
 	    }
+	    
 	    @Override
 	    protected void updateItem(Cart item, boolean empty) {
 
@@ -279,7 +280,7 @@ public class BuyerCart implements Initializable {
     	Alert alert = new Alert(AlertType.CONFIRMATION);
     	alert.setTitle("FarmHub");
     	alert.setHeaderText("");
-    	alert.setContentText("Are you sure you want to place your order?");
+    	alert.setContentText("Place order?");
     	
     	DialogPane dialogPane = alert.getDialogPane();
     	dialogPane.getStylesheets().add(getClass().getResource("../CSS files/myDialogs.css").toExternalForm());

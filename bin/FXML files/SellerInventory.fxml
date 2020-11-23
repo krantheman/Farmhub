@@ -82,7 +82,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ChoiceBox>
-            <Button layoutX="880.0" layoutY="80.0" mnemonicParsing="false" onAction="#deleteAction" prefWidth="70.0" styleClass="GreenButton" stylesheets="@../CSS%20files/Button.css" text="Delete" textFill="WHITE">
+            <Button layoutX="880.0" layoutY="80.0" mnemonicParsing="false" onAction="#deleteAction" prefWidth="70.0" styleClass="RedButton" stylesheets="@../CSS%20files/Button.css" text="Delete" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

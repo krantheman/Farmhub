@@ -34,3 +34,16 @@
 .GreenButton2:hover{ -fx-background-color: #51ab7e; }
 
 .GreenButton2:pressed{ -fx-background-color: #489971; }
+
+.RedButton{
+	-fx-background-color: #ff5148;
+	-fx-background-radius: 0;
+	-fx-text-fill: #2E2E2E;
+}
+
+.RedButton:hover{ -fx-background-color: #ff392f; }
+
+.RedButton:pressed{
+    -fx-background-color: #ff2116;
+    -fx-border-color: rgb(49, 89, 23);
+}

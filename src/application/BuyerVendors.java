@@ -211,6 +211,7 @@ public class BuyerVendors implements Initializable {
 
 		listview.setItems(list);
 		listview.setCellFactory(new VendorsCellFactory());
+		
 		listview.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue)-> {
 			
 			//Inputting vendor details

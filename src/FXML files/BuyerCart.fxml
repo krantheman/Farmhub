@@ -23,7 +23,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button layoutX="900.0" layoutY="820.0" mnemonicParsing="false" onAction="#clearcartAction" prefHeight="30.0" prefWidth="125.0" styleClass="GreenButton" stylesheets="@../CSS%20files/Button.css" text="Clear cart">
+            <Button layoutX="900.0" layoutY="820.0" mnemonicParsing="false" onAction="#clearcartAction" prefHeight="30.0" prefWidth="125.0" styleClass="RedButton" stylesheets="@../CSS%20files/Button.css" text="Clear cart">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

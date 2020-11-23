@@ -26,6 +26,15 @@ import javafx.util.Callback;
 
 public class SellerOrders implements Initializable {
 
+	static  String customerEmail;
+	static  String orderNo;
+	static  String orderDate;
+
+	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
+	SimpleDateFormat df = new SimpleDateFormat("MMMM dd', 'yyyy");
+	SimpleDateFormat tf = new SimpleDateFormat("KK:mm aa");
+
 	//Getters, setters and constructor for list/listview object
 	public static class OrderList {
 
@@ -149,18 +158,9 @@ public class SellerOrders implements Initializable {
 	        	orderno.setText("Order No.: " + item.getOrderno());
 	        	
 	            try {
-
-	            	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	            	SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
-
 	            	Date date = dateFormat.parse(item.getDate());
 					Date time = timeFormat.parse(item.getTime());
-
-					SimpleDateFormat df = new SimpleDateFormat("MMMM dd', 'yyyy");
-					SimpleDateFormat tf = new SimpleDateFormat("KK:mm aa");
-	            
 					datetime.setText(df.format(date) + " at " + tf.format(time).toUpperCase());
-
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
@@ -257,6 +257,41 @@ public class SellerOrders implements Initializable {
 
 		listview.setItems(list);
 		listview.setCellFactory(new OrderListCellFactory());
+		
+		listview.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue)-> {
+			
+			//Inputting customer details
+	        UserDB.getCustomer(newValue.getBuyer());
+			customerEmail = newValue.getBuyer();
+			orderNo = newValue.getOrderno();
+			try {
+				Date date = dateFormat.parse(newValue.getDate());
+				Date time = timeFormat.parse(newValue.getTime());
+				orderDate = df.format(date) + " at " + tf.format(time).toUpperCase();
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			
+			//Changing main pane
+			if (newValue.getStatus().equalsIgnoreCase("Pending")) {
+				try {
+					AnchorPane pane = FXMLLoader.load(getClass().getResource("../FXML files/SellerOrderPending.fxml"));
+					mainpane.getChildren().setAll(pane);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
+			else if (newValue.getStatus().equalsIgnoreCase("Ongoing")) {
+				try {
+					AnchorPane pane = FXMLLoader.load(getClass().getResource("../FXML files/SellerOrderOngoing.fxml"));
+					mainpane.getChildren().setAll(pane);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
+		});
 		
 	}
 

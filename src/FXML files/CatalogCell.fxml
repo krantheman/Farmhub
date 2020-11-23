@@ -31,7 +31,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Button fx:id="minus" layoutX="820.0" layoutY="95.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="32.0" styleClass="GreenButton" stylesheets="@../CSS%20files/Button.css" text="-">
+      <Button fx:id="minus" layoutX="820.0" layoutY="95.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="32.0" styleClass="RedButton" stylesheets="@../CSS%20files/Button.css" text="-">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
