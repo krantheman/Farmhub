@@ -10,12 +10,12 @@
 
 <AnchorPane fx:id="mainpane" prefHeight="1045.0" prefWidth="1770.0" style="-fx-background-color: #2E2E2E;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SellerOrderOngoing">
    <children>
-      <AnchorPane layoutX="235.0" layoutY="40.0" prefHeight="900.0" prefWidth="1300.0" style="-fx-background-color: #404040;">
+      <AnchorPane layoutX="285.0" layoutY="40.0" prefHeight="900.0" prefWidth="1200.0" style="-fx-background-color: #404040;">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
          <children>
-            <ListView fx:id="listview" layoutX="200.0" layoutY="160.0" prefHeight="570.0" prefWidth="900.0" stylesheets="@../CSS%20files/Listview.css" />
+            <ListView fx:id="listview" layoutX="100.0" layoutY="160.0" prefHeight="570.0" prefWidth="1000.0" stylesheets="@../CSS%20files/Listview.css" />
             <Label fx:id="grandtotal" layoutX="110.0" layoutY="840.0" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="20.0" />
@@ -36,23 +36,23 @@
                   <Font name="System Bold" size="35.0" />
                </font>
             </Label>
-            <Label fx:id="address" alignment="TOP_LEFT" layoutX="100.0" layoutY="85.0" prefHeight="60.0" prefWidth="700.0" text="East, West, North, South." textFill="WHITE">
+            <Label fx:id="address" alignment="TOP_LEFT" layoutX="100.0" layoutY="85.0" prefHeight="60.0" prefWidth="600.0" text="East, West, North, South." textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label fx:id="datetime" alignment="CENTER_RIGHT" layoutX="850.0" layoutY="80.0" prefHeight="20.0" prefWidth="350.0" text="November 23, 2020 at 10:30 PM" textFill="WHITE">
+            <Label fx:id="datetime" alignment="CENTER_RIGHT" layoutX="750.0" layoutY="80.0" prefHeight="20.0" prefWidth="350.0" text="November 23, 2020 at 10:30 PM" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label fx:id="orderno" alignment="CENTER_RIGHT" layoutX="850.0" layoutY="45.0" prefHeight="20.0" prefWidth="350.0" text="Order No.: 123456" textFill="WHITE" />
-            <Label fx:id="email" alignment="CENTER_RIGHT" layoutX="850.0" layoutY="115.0" prefHeight="20.0" prefWidth="350.0" text="Contact: akash.tom@gmail.com" textFill="WHITE">
+            <Label fx:id="orderno" alignment="CENTER_RIGHT" layoutX="750.0" layoutY="45.0" prefHeight="20.0" prefWidth="350.0" text="Order No.: 123456" textFill="WHITE" />
+            <Label fx:id="email" alignment="CENTER_RIGHT" layoutX="750.0" layoutY="115.0" prefHeight="20.0" prefWidth="350.0" text="Contact: akash.tom@gmail.com" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Button layoutX="1065.0" layoutY="810.0" mnemonicParsing="false" onAction="#deliveredAction" prefWidth="135.0" styleClass="GreenButton" stylesheets="@../CSS%20files/Button.css" text="Order Delivered">
+            <Button layoutX="965.0" layoutY="810.0" mnemonicParsing="false" onAction="#deliveredAction" prefWidth="135.0" styleClass="GreenButton" stylesheets="@../CSS%20files/Button.css" text="Order Delivered">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -60,7 +60,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button layoutX="900.0" layoutY="810.0" mnemonicParsing="false" onAction="#cancelAction" prefWidth="135.0" styleClass="RedButton" stylesheets="@../CSS%20files/Button.css" text="Cancel Order">
+            <Button layoutX="800.0" layoutY="810.0" mnemonicParsing="false" onAction="#cancelAction" prefWidth="135.0" styleClass="RedButton" stylesheets="@../CSS%20files/Button.css" text="Cancel Order">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

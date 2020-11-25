@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.ImageView?>
@@ -16,10 +15,7 @@
          </opaqueInsets>
          <children>
             <ListView fx:id="listview" maxHeight="900.0" maxWidth="1230.0" prefHeight="900.0" prefWidth="1230.0" stylesheets="@../CSS%20files/Listview.css" />
-            <ImageView fx:id="imgview" fitHeight="256.0" fitWidth="256.0" layoutX="487.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></ImageView>
+            <ImageView fx:id="imgview" fitHeight="256.0" fitWidth="256.0" layoutX="487.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="noorders" alignment="CENTER" contentDisplay="CENTER" layoutX="365.0" layoutY="545.0" prefWidth="500.0" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="18.0" />

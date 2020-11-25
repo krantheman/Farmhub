@@ -38,7 +38,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="250.0" layoutY="325.0" mnemonicParsing="false" onAction="#resetAction" prefWidth="100.0" styleClass="RedButton" stylesheets="@../CSS%20files/Button.css" text="Reset" textFill="WHITE">
+            <Button layoutX="250.0" layoutY="325.0" mnemonicParsing="false" onAction="#resetAction" prefWidth="100.0" styleClass="GreenButton" stylesheets="@../CSS%20files/Button.css" text="Reset" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

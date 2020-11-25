@@ -732,6 +732,9 @@ public class UserDB {
 		case 1:	query = String.format("select distinct orderno, buyer, seller, orderdate, ordertime, stat from orders where %s = '%s' and stat = 'Pending' or stat = 'Ongoing';", userType.toLowerCase(), userEmail);
 		break;
 
+		case 2:	query = String.format("select distinct orderno, buyer, seller, orderdate, ordertime, stat from orders where %s = '%s' and stat = 'Delivered' or stat = 'Cancelled';", userType.toLowerCase(), userEmail);
+		break;
+
 		}
 			
 		PreparedStatement ps = connection.prepareStatement(query);

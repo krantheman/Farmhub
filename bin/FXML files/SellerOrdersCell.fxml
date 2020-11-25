@@ -26,7 +26,7 @@
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></Label>
-      <ImageView fitHeight="165.0" layoutX="75.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="mainimg" fitHeight="165.0" layoutX="75.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../icons/grocery-cart.png" />
          </image>

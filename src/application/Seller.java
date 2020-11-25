@@ -59,7 +59,7 @@ public class Seller implements Initializable {
 
     @FXML
     void historyAction(ActionEvent event) throws Exception {
-    	setAction("", true);
+    	setAction("SellerHistory.fxml", true);
     }
 
     @FXML
