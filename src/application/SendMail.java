@@ -13,7 +13,7 @@ import javax.mail.internet.MimeMessage;
 
 public class SendMail {
 	
-	public static void sendMail(String recipient, String name) throws MessagingException {
+	public static void sendMail(String recipient, String subject, String content) throws MessagingException {
 		
 		Properties properties = new Properties();
 		
@@ -32,21 +32,20 @@ public class SendMail {
 			}	
 		});
 		
-		Message message = prepareMessage(session, sender, recipient, name);
+		Message message = prepareMessage(session, sender, recipient, subject, content);
 		
 		Transport.send(message);
 
 	}
 	
-	private static Message prepareMessage(Session session, String sender, String recipient, String name) {
+	private static Message prepareMessage(Session session, String sender, String recipient, String subject, String content) {
 		
 		try {
 
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(sender));
 			message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-			message.setSubject("Welcome to FarmHub!");
-			String content = "Hi, "+name+"!\nWelcome to FarmHub. Your one-stop shopping destination for all fruits and vegetables. Directly from the farm.";
+			message.setSubject(subject);
 			message.setText(content);
 			return message;
 

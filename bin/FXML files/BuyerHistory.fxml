@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainpane" prefHeight="1045.0" prefWidth="1770.0" style="-fx-background-color: #2E2E2E;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.BuyerHistory">
+   <children>
+      <AnchorPane layoutX="270.0" layoutY="40.0" maxHeight="900.0" maxWidth="1230.0" minHeight="900.0" minWidth="1230.0" prefHeight="900.0" prefWidth="1230.0" style="-fx-background-color: #2e2e2e;">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <children>
+            <ListView fx:id="listview" maxHeight="900.0" maxWidth="1230.0" prefHeight="900.0" prefWidth="1230.0" stylesheets="@../CSS%20files/Listview.css" />
+            <ImageView fx:id="imgview" fitHeight="256.0" fitWidth="256.0" layoutX="487.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="nohistory" alignment="CENTER" contentDisplay="CENTER" layoutX="365.0" layoutY="545.0" prefWidth="500.0" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

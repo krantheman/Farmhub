@@ -3,30 +3,37 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="anchorpane" prefHeight="105.0" prefWidth="970.0" style="-fx-background-color: #3c3c3c; -fx-border-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="name" layoutX="130.0" layoutY="15.0" prefHeight="40.0" styleClass="outline" stylesheets="@../CSS%20files/Textfield.css" text="Charles Cabbage" textFill="WHITE">
+      <Label fx:id="name" layoutX="160.0" layoutY="15.0" prefHeight="40.0" styleClass="outline" stylesheets="@../CSS%20files/Textfield.css" text="Charles Cabbage" textFill="WHITE">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="quantity" layoutX="140.0" layoutY="60.0" text="500g" textFill="WHITE">
+      <Label fx:id="quantity" layoutX="170.0" layoutY="60.0" text="500g" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="numberTF" alignment="CENTER" editable="false" layoutX="750.0" layoutY="60.0" prefHeight="28.0" prefWidth="35.0" styleClass="text-field2" stylesheets="@../CSS%20files/Textfield.css" text="0">
+      <TextField fx:id="numberTF" alignment="CENTER" editable="false" layoutX="800.0" layoutY="60.0" prefHeight="28.0" prefWidth="35.0" styleClass="text-field2" stylesheets="@../CSS%20files/Textfield.css" text="0">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </TextField>
-      <Label fx:id="price" alignment="TOP_LEFT" layoutX="800.0" layoutY="65.0" prefHeight="8.0" text="Rs. 60" textFill="WHITE" wrapText="true">
+      <Label fx:id="price" alignment="TOP_LEFT" layoutX="850.0" layoutY="65.0" text="Rs. 60" textFill="WHITE" wrapText="true">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Label>
+      <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="60.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../icons/harvest.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

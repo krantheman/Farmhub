@@ -63,7 +63,9 @@ public class UserDB {
 			userType = interest;
 
 			//Sending mail
-			SendMail.sendMail(email, name);
+			String subject = "Welcomme to FarmHub!";
+			String content = "Hi, "+userName+"!\nWelcome to FarmHub. Your one-stop shopping destination for all fruits and vegetables. Directly from the farm.";
+			SendMail.sendMail(email, subject, content);
 			
 		} catch (SQLIntegrityConstraintViolationException e) {
 			
@@ -729,10 +731,10 @@ public class UserDB {
 
 		switch(option) {
 
-		case 1:	query = String.format("select distinct orderno, buyer, seller, orderdate, ordertime, stat from orders where %s = '%s' and stat = 'Pending' or stat = 'Ongoing';", userType.toLowerCase(), userEmail);
+		case 1:	query = String.format("select distinct orderno, buyer, seller, orderdate, ordertime, stat from orders where %s = '%s' and (stat = 'Pending' or stat = 'Ongoing');", userType.toLowerCase(), userEmail);
 		break;
 
-		case 2:	query = String.format("select distinct orderno, buyer, seller, orderdate, ordertime, stat from orders where %s = '%s' and stat = 'Delivered' or stat = 'Cancelled';", userType.toLowerCase(), userEmail);
+		case 2:	query = String.format("select distinct orderno, buyer, seller, orderdate, ordertime, stat from orders where %s = '%s' and (stat = 'Delivered' or stat = 'Cancelled');", userType.toLowerCase(), userEmail);
 		break;
 
 		}
@@ -864,6 +866,61 @@ public class UserDB {
 	
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 
+	//For adding rating to buyers
+	static void setStars(String orderno, int stars) {
+		
+		try {
+			
+			//Connection
+			Connection connection = DriverManager.getConnection(url, username, password);
+		
+			//Query statement
+			String query = "update orders set stars = '" + stars + "' where orderno = '" + orderno + "';";
+			Statement statement = connection.createStatement();
+			statement.executeUpdate(query);
+
+			//Closing connection
+			connection.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+
+	//For getting rating given to buyers
+	static int setStars(String orderno) {
+		
+		int stars = 0;
+
+		try {
+			
+			//Connection
+			Connection connection = DriverManager.getConnection(url, username, password);
+		
+			//Query statement
+			String query = "select distinct stars from orders where orderno = '" + orderno + "';";
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(query);
+
+			while (rs.next()) {
+				stars = rs.getInt("stars");
+			}
+
+			//Closing connection
+			connection.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return stars;
+
+	}
+	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 	//For signing out 
 	static void signOut() {
 		

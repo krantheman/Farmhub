@@ -9,6 +9,8 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+import javax.mail.MessagingException;
+
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -275,7 +277,7 @@ public class BuyerCart implements Initializable {
     }
 
     @FXML
-    void placeorderAction(ActionEvent event) throws SQLException {
+    void placeorderAction(ActionEvent event) throws SQLException, MessagingException {
 
     	Alert alert = new Alert(AlertType.CONFIRMATION);
     	alert.setTitle("FarmHub");
@@ -292,9 +294,24 @@ public class BuyerCart implements Initializable {
     	Optional<ButtonType> result = alert.showAndWait();
     	
     	if (result.get() == yes) {
+
     		getOrderno();
     		UserDB.placeOrder(orderno);
     		UserDB.clearCart();
+
+			//Sending mail
+			String subject = "You have a new order!";
+			String content = "Hi, "+UserDB.vendorName+"!\nYou have a new order from "+UserDB.userName+".";
+			SendMail.sendMail(UserDB.vendorEmail, subject, content);
+
+			//Changing main pane
+			try {
+				AnchorPane pane = FXMLLoader.load(getClass().getResource("../FXML files/BuyerOrders.fxml"));
+				mainpane.getChildren().setAll(pane);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
     	}
 
     	else 

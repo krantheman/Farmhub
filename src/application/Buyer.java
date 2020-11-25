@@ -56,12 +56,12 @@ public class Buyer implements Initializable{
 
     @FXML
     void ordersAction(ActionEvent event) throws Exception {
-    	setAction("", true);
+    	setAction("BuyerOrders.fxml", true);
     }
     
     @FXML
     void historyAction(ActionEvent event) throws Exception {
-    	setAction("", true);
+    	setAction("BuyerHistory.fxml", true);
     }
 
     @FXML

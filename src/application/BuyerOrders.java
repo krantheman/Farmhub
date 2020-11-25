@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import application.SellerInventory.Inventory;
 import application.SellerOrders.OrderList;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -24,7 +25,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 
-public class SellerHistory implements Initializable {
+public class BuyerOrders implements Initializable {
 
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
@@ -48,9 +49,6 @@ public class SellerHistory implements Initializable {
 
 	    @FXML
 	    private Label datetime;
-	    
-	    @FXML
-	    private ImageView mainimg;
 
 	    @FXML
 	    private ImageView imageview;
@@ -86,7 +84,7 @@ public class SellerHistory implements Initializable {
 
 	        else {
 	        	
-	        	UserDB.getCustomer(item.getBuyer());
+	        	UserDB.getCustomer(item.getSeller());
 	        	name.setText(UserDB.customerName);
 	        	address.setText(UserDB.customerAddress);
 	        	orderno.setText("Order No.: " + item.getOrderno());
@@ -99,32 +97,23 @@ public class SellerHistory implements Initializable {
 					e.printStackTrace();
 				}
 	            
-	        	String imgfile, mainimgfile;
-	        	
-	        	mainimgfile = "/home/krantheman/eclipse-workspace/FX Presents/icons/online-shopping.png";
+	        	String imgfile;
 
-	        	if (item.getStatus().equalsIgnoreCase("Delivered")) {
-	        		status.setText("Delivered");
-	        		imgfile = "/home/krantheman/eclipse-workspace/FX Presents/icons/Circle (G).png";
+	        	if (item.getStatus().equalsIgnoreCase("pending")) {
+	        		status.setText("Pending");
+	        		imgfile = "/home/krantheman/eclipse-workspace/FX Presents/icons/Circle (B).png";
 	        	}
 
 	        	else {
-	        		status.setText("Cancelled");
-	        		imgfile = "/home/krantheman/eclipse-workspace/FX Presents/icons/Circle (R).png";
+	        		status.setText("Accepted");
+	        		imgfile = "/home/krantheman/eclipse-workspace/FX Presents/icons/Circle (Y).png";
 	        	}
 	        	
 	        	FileInputStream input;
-	        	Image image;
 				try {
-
-					input = new FileInputStream(mainimgfile);
-					image = new Image(input);
-					mainimg.setImage(image);
-					
 					input = new FileInputStream(imgfile);
-					image = new Image(input);
+					Image image = new Image(input);
 					imageview.setImage(image);
-
 				} catch (FileNotFoundException e1) {
 					e1.printStackTrace();
 				}
@@ -152,18 +141,19 @@ public class SellerHistory implements Initializable {
     private ImageView imgview;
 
     @FXML
-    private Label nohistory;
+    private Label noorders;
 
     @FXML
     private ListView<OrderList> listview;
 
     ObservableList<OrderList> list;
+    ObservableList<Inventory> inventory;
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 		try {
-			list = UserDB.displayOrders(2);
+			list = UserDB.displayOrders(1);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -172,15 +162,15 @@ public class SellerHistory implements Initializable {
 
         	FileInputStream input;
 			try {
-				input = new FileInputStream("/home/krantheman/eclipse-workspace/FX Presents/icons/ancient-scroll.png");
+				input = new FileInputStream("/home/krantheman/eclipse-workspace/FX Presents/icons/customer.png");
 				Image image = new Image(input);
 				imgview.setImage(image);
 			} catch (FileNotFoundException e1) {
 				e1.printStackTrace();
 			}
 
-			String noordersText = "You have not received any orders yet.";
-			nohistory.setText(noordersText);
+			String noordersText = "You have not placed any orders at the moment. ";
+			noorders.setText(noordersText);
 
 		}
 
@@ -190,8 +180,8 @@ public class SellerHistory implements Initializable {
 		listview.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue)-> {
 			
 			//Inputting customer details
-	        UserDB.getCustomer(newValue.getBuyer());
-			SellerOrders.customerEmail = newValue.getBuyer();
+	        UserDB.getCustomer(newValue.getSeller());
+			SellerOrders.customerEmail = newValue.getSeller();
 			SellerOrders.orderNo = newValue.getOrderno();
 			try {
 				Date date = dateFormat.parse(newValue.getDate());
@@ -203,7 +193,7 @@ public class SellerHistory implements Initializable {
 			
 			//Changing main pane
 			try {
-				AnchorPane pane = FXMLLoader.load(getClass().getResource("../FXML files/SellerHistoryView.fxml"));
+				AnchorPane pane = FXMLLoader.load(getClass().getResource("../FXML files/BuyerOrderView.fxml"));
 				mainpane.getChildren().setAll(pane);
 			} catch (IOException e) {
 				e.printStackTrace();

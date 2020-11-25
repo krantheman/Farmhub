@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import application.SellerInventory.Inventory;
 import application.SellerOrders.OrderList;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -24,7 +25,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 
-public class SellerHistory implements Initializable {
+public class BuyerHistory implements Initializable {
 
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
@@ -86,7 +87,7 @@ public class SellerHistory implements Initializable {
 
 	        else {
 	        	
-	        	UserDB.getCustomer(item.getBuyer());
+	        	UserDB.getCustomer(item.getSeller());
 	        	name.setText(UserDB.customerName);
 	        	address.setText(UserDB.customerAddress);
 	        	orderno.setText("Order No.: " + item.getOrderno());
@@ -158,6 +159,7 @@ public class SellerHistory implements Initializable {
     private ListView<OrderList> listview;
 
     ObservableList<OrderList> list;
+    ObservableList<Inventory> inventory;
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -190,8 +192,8 @@ public class SellerHistory implements Initializable {
 		listview.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue)-> {
 			
 			//Inputting customer details
-	        UserDB.getCustomer(newValue.getBuyer());
-			SellerOrders.customerEmail = newValue.getBuyer();
+	        UserDB.getCustomer(newValue.getSeller());
+			SellerOrders.customerEmail = newValue.getSeller();
 			SellerOrders.orderNo = newValue.getOrderno();
 			try {
 				Date date = dateFormat.parse(newValue.getDate());
@@ -203,7 +205,7 @@ public class SellerHistory implements Initializable {
 			
 			//Changing main pane
 			try {
-				AnchorPane pane = FXMLLoader.load(getClass().getResource("../FXML files/SellerHistoryView.fxml"));
+				AnchorPane pane = FXMLLoader.load(getClass().getResource("../FXML files/BuyerHistoryView.fxml"));
 				mainpane.getChildren().setAll(pane);
 			} catch (IOException e) {
 				e.printStackTrace();

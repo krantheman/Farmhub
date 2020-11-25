@@ -6,8 +6,6 @@ import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import javax.mail.MessagingException;
-
 import application.BuyerCart.Cart;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,7 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 
-public class SellerOrderOngoing implements Initializable {
+public class BuyerOrderView implements Initializable {
 
     //Controller class for Orders listcell
 	public class OrderViewCell extends ListCell<Cart> {
@@ -153,49 +151,7 @@ public class SellerOrderOngoing implements Initializable {
 
 			//Changing main pane
 			try {
-				AnchorPane pane = FXMLLoader.load(getClass().getResource("../FXML files/SellerOrders.fxml"));
-				mainpane.getChildren().setAll(pane);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-    	}
-
-    	else 
-    		alert.close();
-    	
-    }
-
-    @FXML
-    void deliveredAction(ActionEvent event) throws MessagingException {
-
-    	Alert alert = new Alert(AlertType.CONFIRMATION);
-    	alert.setTitle("FarmHub");
-    	alert.setHeaderText("");
-    	alert.setContentText("Order delivered?");
-    	
-    	DialogPane dialogPane = alert.getDialogPane();
-    	dialogPane.getStylesheets().add(getClass().getResource("../CSS files/myDialogs.css").toExternalForm());
-    	dialogPane.getStyleClass().add("myDialog");
-	        			
-    	ButtonType yes = new ButtonType("Yes");
-    	ButtonType no = new ButtonType("No");
-    	alert.getButtonTypes().setAll(yes, no);
-    	Optional<ButtonType> result = alert.showAndWait();
-    	
-    	if (result.get() == yes) {
-
-			UserDB.updateOrder("Delivered", SellerOrders.orderNo);
-
-			//Sending mail
-			String subject = "Your order has been delivered!";
-			String content = "Hi, "+UserDB.customerName+"!\nYour order from "+UserDB.userName+" has been safely delivered.";
-			SendMail.sendMail(SellerOrders.customerEmail, subject, content);
-
-
-			//Changing main pane
-			try {
-				AnchorPane pane = FXMLLoader.load(getClass().getResource("../FXML files/SellerOrders.fxml"));
+				AnchorPane pane = FXMLLoader.load(getClass().getResource("../FXML files/BuyerOrders.fxml"));
 				mainpane.getChildren().setAll(pane);
 			} catch (IOException e) {
 				e.printStackTrace();
