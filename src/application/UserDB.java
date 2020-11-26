@@ -921,6 +921,59 @@ public class UserDB {
 	}
 	
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+
+	//For getting all the ratings given to a buyer
+	static void getAllStars() {
+		
+		try {
+			
+			//Connection
+			Connection connection = DriverManager.getConnection(url, username, password);
+		
+			//Query statement
+			String query = "select count(stars) as noofstars, avg(stars) as avgstars from (select distinct orderno, stars from orders where seller = '" + SellerOrders.customerEmail + "' and stars > 0) as starz;";
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(query);
+
+			while (rs.next()) {
+				BuyerHistoryView.noofstars = rs.getInt("noofstars");
+				BuyerHistoryView.avgstars = rs.getDouble("avgstars");
+			}
+
+			//Closing connection
+			connection.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
+	
+	//For updating user stars
+	static void updateStars() {
+		
+		try {
+			
+			//Connection
+			Connection connection = DriverManager.getConnection(url, username, password);
+		
+			//Query statement
+			String query = "update users set rating = '" + BuyerHistoryView.avgstars + "', reviews = '" + BuyerHistoryView.noofstars + "' where email = '" + SellerOrders.customerEmail + "';";
+			Statement statement = connection.createStatement();
+			statement.executeUpdate(query);
+
+			//Closing connection
+			connection.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------	
 	//For signing out 
 	static void signOut() {
 		

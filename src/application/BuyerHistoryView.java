@@ -275,6 +275,9 @@ public class BuyerHistoryView implements Initializable {
 
     }
     
+    static int noofstars;
+    static double avgstars;
+    
     @FXML
     void submitAction(ActionEvent event) {
     	
@@ -285,6 +288,8 @@ public class BuyerHistoryView implements Initializable {
 
     		thankyou.setText("Thank you for your feedback!");
     		UserDB.setStars(SellerOrders.orderNo, stars);
+    		UserDB.getAllStars();
+    		UserDB.updateStars();
     		
     	}
 
