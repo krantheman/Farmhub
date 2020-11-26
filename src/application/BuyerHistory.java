@@ -204,11 +204,22 @@ public class BuyerHistory implements Initializable {
 			}
 			
 			//Changing main pane
-			try {
-				AnchorPane pane = FXMLLoader.load(getClass().getResource("../FXML files/BuyerHistoryView.fxml"));
-				mainpane.getChildren().setAll(pane);
-			} catch (IOException e) {
-				e.printStackTrace();
+			if(newValue.getStatus().equals("Delivered")) {
+				try {
+					AnchorPane pane = FXMLLoader.load(getClass().getResource("../FXML files/BuyerHistoryView.fxml"));
+					mainpane.getChildren().setAll(pane);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			else {
+				try {
+					AnchorPane pane = FXMLLoader.load(getClass().getResource("../FXML files/BuyerHistoryCancelled.fxml"));
+					mainpane.getChildren().setAll(pane);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 
 		});
