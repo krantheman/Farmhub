@@ -158,7 +158,10 @@ public class BuyerVendors implements Initializable {
 
 	        	else {
 	        		stars.setText(item.getStars());
-	        		reviews.setText("(" + item.getReviews() + " reviews)");
+	        		if (item.getReviews().contentEquals("1"))
+	        			reviews.setText("(" + item.getReviews() + " review)");
+	        		else
+	        			reviews.setText("(" + item.getReviews() + " reviews)");
 	        	}
 
 	            setContentDisplay(ContentDisplay.GRAPHIC_ONLY);

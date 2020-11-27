@@ -243,7 +243,10 @@ public class VendorsCatalog implements Initializable {
     	}
     	else {
     		stars.setText(UserDB.vendorStars);
-    		reviews.setText("(" + UserDB.vendorReviews + " reviews)");
+			if (UserDB.vendorReviews.contentEquals("1"))
+				reviews.setText("(" + UserDB.vendorReviews + " review)");
+			else
+				reviews.setText("(" + UserDB.vendorReviews + " reviews)");
     	}
 
 		//Setting text to choicebox and updating

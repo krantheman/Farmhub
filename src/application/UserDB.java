@@ -731,10 +731,10 @@ public class UserDB {
 
 		switch(option) {
 
-		case 1:	query = String.format("select distinct orderno, buyer, seller, orderdate, ordertime, stat from orders where %s = '%s' and (stat = 'Pending' or stat = 'Ongoing');", userType.toLowerCase(), userEmail);
+		case 1:	query = String.format("select distinct orderno, buyer, seller, orderdate, ordertime, stat from orders where %s = '%s' and (stat = 'Pending' or stat = 'Ongoing') order by orderdate desc, ordertime desc;", userType.toLowerCase(), userEmail);
 		break;
 
-		case 2:	query = String.format("select distinct orderno, buyer, seller, orderdate, ordertime, stat from orders where %s = '%s' and (stat = 'Delivered' or stat = 'Cancelled');", userType.toLowerCase(), userEmail);
+		case 2:	query = String.format("select distinct orderno, buyer, seller, orderdate, ordertime, stat from orders where %s = '%s' and (stat = 'Delivered' or stat = 'Cancelled') order by orderdate desc, ordertime desc;", userType.toLowerCase(), userEmail);
 		break;
 
 		}
