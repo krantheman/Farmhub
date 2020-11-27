@@ -362,7 +362,7 @@ public class UserDB {
 		Connection connection = DriverManager.getConnection(url, username, password);
 			
 		//Query statement
-		String query = "select * from users where lower(name) like lower('%" + search.replaceAll("'", "\\\\'") + "%') and live = '1'";
+		String query = "select * from users where lower(name) like lower('%" + search.replaceAll("'", "\\\\'") + "%') and live = '1' order by rating desc";
 
 		PreparedStatement ps = connection.prepareStatement(query);
 		ResultSet rs = ps.executeQuery();
