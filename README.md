@@ -6,7 +6,7 @@ FarmHub is a simple GUI platform for hosting and organising buyer-seller interac
 
 _Logo made using [this](https://www.logoly.pro/#/)._
 
----
+
 
 ## **Background**
 
@@ -16,7 +16,7 @@ _Logo made using [this](https://www.logoly.pro/#/)._
 Along with this, I've also made use of CSS for styling the UI. 
 The application logic is written entirely in Java.
 
----
+
 
 ## **Screenshots**
 
@@ -62,7 +62,7 @@ The application logic is written entirely in Java.
 
 _Icons made by [Iconixar](https://www.flaticon.com/authors/iconixar)._
 
----
+
 
 ## **Database**
 
@@ -157,4 +157,4 @@ All database operation functions have been written in a single class ```UserDB.j
     )
     ```
 
-    ----
+    
